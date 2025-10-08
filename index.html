@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anniken Hogstad - CV</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #d97706;
+            --primary-light: #f59e0b;
+            --primary-dark: #b45309;
+            --secondary-color: #f8fafc;
+            --text-dark: #1f2937;
+            --text-light: #374151;
+            --text-muted: #6b7280;
+            --white: #ffffff;
+            --shadow-light: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-medium: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-large: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --border-radius: 1rem;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            background: #ffffff;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-large);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #d2691e 0%, #a0522d 60%, #8b4513 100%);
+            color: var(--white);
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            left: -10%;
+            width: 120%;
+            height: 140%;
+            background:
+                radial-gradient(ellipse 300px 100px at 20% 80%, rgba(139, 69, 19, 0.4) 0%, transparent 60%),
+                radial-gradient(ellipse 400px 120px at 80% 30%, rgba(160, 82, 45, 0.3) 0%, transparent 70%),
+                radial-gradient(ellipse 250px 80px at 60% 90%, rgba(210, 105, 30, 0.2) 0%, transparent 50%);
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-20px, -20px) rotate(180deg); }
+        }
+
+        .profile-section {
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            margin: 0 auto 2rem;
+            overflow: hidden;
+            box-shadow: var(--shadow-medium);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-large);
+        }
+
+        .profile-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--white);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .profile-info h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .profile-info .subtitle {
+            font-size: 1.5rem;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        .profile-info .location {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .profile-info .location i {
+            color: var(--primary-light);
+        }
+
+        .contact-links {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--white);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .contact-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            padding: 3rem 2rem;
+        }
+
+        .sidebar {
+            background: var(--secondary-color);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            height: fit-content;
+            position: sticky;
+            top: 2rem;
+        }
+
+        .content-area {
+            padding: 0 1rem;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-title i {
+            color: var(--primary-color);
+            font-size: 1.6rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+            border-radius: 2px;
+        }
+
+        .sidebar .section-title {
+            font-size: 1.4rem;
+        }
+
+        .sidebar .section-title::after {
+            width: 30px;
+        }
+
+        .experience-item {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-light);
+            margin-bottom: 2rem;
+            transition: var(--transition);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .experience-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            gap: 1rem;
+        }
+
+        .job-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .company {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .job-period {
+            text-align: right;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .job-description {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 0.8rem;
+        }
+
+        .skill-item {
+            background: #374151;
+            color: var(--white);
+            padding: 0.7rem 0.9rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            word-break: break-word;
+            hyphens: auto;
+            line-height: 1.3;
+            border: 2px solid transparent;
+        }
+
+        .skill-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .skill-item:hover::before {
+            left: 100%;
+        }
+
+        .skill-item:hover {
+            transform: scale(1.05);
+            border-color: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            box-shadow: 0 8px 25px rgba(217, 119, 6, 0.3);
+        }
+
+        .education-item {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .education-item:hover {
+            transform: translateX(10px);
+        }
+
+        .degree {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .institution {
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .education-period {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .contact-info {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-light);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            transition: var(--transition);
+            gap: 0.75rem;
+        }
+
+        .contact-icon {
+            color: var(--primary-color);
+            width: 16px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .contact-item:hover {
+            background: var(--secondary-color);
+        }
+
+        .contact-label {
+            font-weight: 600;
+            color: var(--text-dark);
+            min-width: 80px;
+            margin-right: 1rem;
+        }
+
+        .contact-value {
+            color: var(--text-light);
+        }
+
+        .contact-value a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .contact-value a:hover {
+            color: var(--primary-dark);
+        }
+
+        .languages {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-light);
+        }
+
+        .language-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .language-item:last-child {
+            border-bottom: none;
+        }
+
+        .language-name {
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .language-level {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .certification-item, .position-item {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+            transition: var(--transition);
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .certification-item:hover, .position-item:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow-light);
+        }
+
+        .certification-name, .position-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+            line-height: 1.3;
+        }
+
+        .certification-provider, .position-organization {
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+            font-size: 0.9rem;
+        }
+
+        .certification-period, .position-period {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem 0.5rem;
+            }
+
+            .header {
+                padding: 2rem 1rem;
+            }
+
+            .profile-info h1 {
+                font-size: 2.2rem;
+            }
+
+            .profile-info .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 2rem 1rem;
+            }
+
+            .sidebar {
+                order: 2;
+                position: static;
+            }
+
+            .job-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .job-period {
+                text-align: left;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Skip to main content link */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: var(--primary-color);
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            border-radius: 4px;
+            z-index: 10000;
+        }
+
+        .skip-link:focus {
+            top: 6px;
+        }
+
+        /* Enhanced focus indicators */
+        .contact-link:focus,
+        .skill-item:focus,
+        .project-link:focus,
+        .contact-item a:focus {
+            outline: 3px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+
+        /* WCAG compliant button */
+        button:focus {
+            outline: 3px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Hopp til hovedinnhold</a>
+    <div class="container">
+        <header class="header">
+            <div class="profile-section" role="banner">
+                <div class="profile-image" role="img" aria-label="Profilbilde av Anniken Hogstad">
+                    <img src="resume/1.png" alt="Profilbilde av Anniken Hogstad, Senior UX- og tjenestedesigner" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="profile-info">
+                    <h1>Anniken Hogstad</h1>
+                    <p class="subtitle">Senior UX-, tjeneste- og innholdsdesigner</p>
+                    <p class="location"><i class="fas fa-map-marker-alt"></i> Oslo, Norway</p>
+                </div>
+                <div class="contact-links">
+                    <a href="mailto:annikenh@proton.me" class="contact-link"><i class="fas fa-envelope"></i> E-post</a>
+                    <a href="#" class="contact-link"><i class="fas fa-download"></i> Last ned CV</a>
+                </div>
+            </div>
+        </header>
+
+        <main id="main-content" class="main-content" role="main">
+            <aside class="sidebar" role="complementary" aria-label="Tilleggsinformasjon og ferdigheter">
+
+                <section class="section fade-in" aria-labelledby="education-heading">
+                    <h2 id="education-heading" class="section-title"><i class="fas fa-graduation-cap"></i> Utdanning</h2>
+                    <div class="education-item">
+                        <h3 class="degree">Emner til Master i Interaksjonsdesign</h3>
+                        <p class="institution">NTNU Gjøvik</p>
+                        <p class="education-period">2019</p>
+                    </div>
+                    <div class="education-item">
+                        <h3 class="degree">Bachelor Information Technology</h3>
+                        <p class="institution">NITH</p>
+                        <p class="specialization">Spesialisering: Interaktivt design</p>
+                        <p class="education-period">2009</p>
+                    </div>
+                    <div class="education-item">
+                        <h3 class="degree">Fagskole Journalistikk</h3>
+                        <p class="institution">Merkantilt Institutt (MI)</p>
+                        <p class="education-period">2004</p>
+                    </div>
+                </section>
+
+                <section class="section fade-in" aria-labelledby="contact-heading">
+                    <h2 id="contact-heading" class="section-title"><i class="fas fa-address-book"></i> Kontakt</h2>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope contact-icon"></i>
+                            <span class="contact-label">E-post:</span>
+                            <span class="contact-value">
+                                <a href="mailto:annikenh@proton.me">annikenh@proton.me</a>
+                            </span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone contact-icon"></i>
+                            <span class="contact-label">Telefon:</span>
+                            <span class="contact-value">+47 993 90 673</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-linkedin contact-icon"></i>
+                            <span class="contact-label">LinkedIn:</span>
+                            <span class="contact-value">
+                                <a href="https://www.linkedin.com/in/annikenhogstad/" target="_blank">linkedin.com/in/annikenhogstad</a>
+                            </span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-bluesky contact-icon"></i>
+                            <span class="contact-label">Bluesky:</span>
+                            <span class="contact-value">
+                                <a href="https://bsky.app/profile/anniken.bsky.social" target="_blank">anniken.bsky.social</a>
+                            </span>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section fade-in" aria-labelledby="languages-heading">
+                    <h2 id="languages-heading" class="section-title"><i class="fas fa-language"></i> Språk</h2>
+                    <div class="languages">
+                        <div class="language-item">
+                            <span class="language-name">Norsk</span>
+                            <span class="language-level">Morsmål</span>
+                        </div>
+                        <div class="language-item">
+                            <span class="language-name">Engelsk</span>
+                            <span class="language-level">Flytende</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section fade-in" aria-labelledby="certifications-heading">
+                    <h2 id="certifications-heading" class="section-title"><i class="fas fa-certificate"></i> Sertifiseringer</h2>
+                    <div class="certification-item">
+                        <h3 class="certification-name">Javascript</h3>
+                        <p class="certification-provider">Codecademy</p>
+                        <p class="certification-period">2022</p>
+                    </div>
+                    <div class="certification-item">
+                        <h3 class="certification-name">Strategize like a futurist</h3>
+                        <p class="certification-provider">Hyper Island</p>
+                        <p class="certification-period">2022</p>
+                    </div>
+                    <div class="certification-item">
+                        <h3 class="certification-name">Design Thinking for the Greater Good</h3>
+                        <p class="certification-provider">Coursera</p>
+                        <p class="certification-period">2020</p>
+                    </div>
+                </section>
+
+                <section class="section fade-in" aria-labelledby="positions-heading">
+                    <h2 id="positions-heading" class="section-title"><i class="fas fa-users"></i> Verv</h2>
+                    <div class="position-item">
+                        <h3 class="position-title">Gruppeleder Norsktrening</h3>
+                        <p class="position-organization">Røde Kors</p>
+                        <p class="position-period">2016 - 2018</p>
+                    </div>
+                    <div class="position-item">
+                        <h3 class="position-title">Faglig sakkyndig</h3>
+                        <p class="position-organization">NOKUT</p>
+                        <p class="position-period">2013, 2016</p>
+                    </div>
+                    <div class="position-item">
+                        <h3 class="position-title">Firmarepresentant</h3>
+                        <p class="position-organization">IxDA</p>
+                        <p class="position-period">2011 - 2013</p>
+                    </div>
+                </section>
+
+                <section class="section fade-in" aria-labelledby="skills-heading">
+                    <h2 id="skills-heading" class="section-title"><i class="fas fa-tools"></i> Ferdigheter</h2>
+                    <div class="skills-grid" id="skills-container">
+                        <div class="skill-item">Figma</div>
+                        <div class="skill-item">Miro</div>
+                        <div class="skill-item">UX Design</div>
+                        <div class="skill-item">Tjeneste&shy;design</div>
+                        <div class="skill-item">Brukertesting</div>
+                        <div class="skill-item">Prototyping</div>
+                        <div class="skill-item">Designsystem</div>
+                        <div class="skill-item">Innsikt</div>
+                        <div class="skill-item">Workshop&shy;fasilitering</div>
+                        <div class="skill-item">Universell utforming</div>
+                        <div class="skill-item">Tekst</div>
+                        <div class="skill-item">Oversettelse</div>
+                        <div class="skill-item">Kjerne&shy;modellen</div>
+                        <div class="skill-item">Løsnings&shy;spesifisering</div>
+                        <div class="skill-item">Behovs&shy;analyse</div>
+                        <div class="skill-item">Wayfinding</div>
+                        <div class="skill-item">Tjenesteutvikling</div>
+                        <div class="skill-item">Ressurs&shy;styring</div>
+                        <div class="skill-item">Dashboard</div>
+                        <div class="skill-item">Bruker&shy;undersøkelser</div>
+                        <div class="skill-item">Rådgiving</div>
+                        <div class="skill-item">Konseptutvikling</div>
+                    </div>
+                </section>
+            </aside>
+
+            <div class="content-area">
+                <section class="section fade-in" aria-labelledby="summary-heading">
+                    <h2 id="summary-heading" class="section-title"><i class="fas fa-user"></i> Sammendrag</h2>
+                    <p style="color: var(--text-light); font-size: 1.1rem; line-height: 1.8;">
+                        Erfaren designer med 15 års bakgrunn fra alt fra komplekse domener til oppstartsbedrifter.
+                        Har jobbet med eksterne og interne løsninger, til privatpersoner og bedrifter.
+                        Fokuserer på at det som lages skal ha verdi og utfordrer gjerne etablerte sannheter
+                        om hva en løsning skal være, og for hvem. Bred erfaring med innsiktsarbeid,
+                        interaksjonsdesign, brukeropplevelse og tekst.
+                    </p>
+                    <p style="color: var(--text-light); font-size: 1.05rem; line-height: 1.7; margin-top: 1.5rem; font-style: italic; border-left: 3px solid var(--primary-color); padding-left: 1rem;">
+                        Navigerer komplekse systemlandskap og gjør innsikt til intuitive
+                        brukeropplevelser som leverer målbar verdi for både brukere og virksomhet.
+                    </p>
+                </section>
+
+                <section class="section fade-in" aria-labelledby="projects-heading">
+                    <h2 id="projects-heading" class="section-title"><i class="fas fa-project-diagram"></i> Utvalgte prosjekter</h2>
+
+                    <!-- Klientlogoer -->
+                    <div class="clients-logos" style="margin-bottom: 2rem; text-align: center;">
+                        <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; flex-wrap: wrap; opacity: 0.7;">
+                            <div style="padding: 0.5rem; background: #e91e63; color: white; font-weight: 600; font-size: 0.9rem; border-radius: 4px;">Telia</div>
+                            <div style="padding: 0.5rem; background: #1e40af; color: white; font-weight: 600; font-size: 0.9rem; border-radius: 4px;">Forsvarsmateriell</div>
+                            <div style="padding: 0.5rem; background: #f97316; color: white; font-weight: 600; font-size: 0.9rem; border-radius: 4px;">Whee!</div>
+                            <div style="padding: 0.5rem; background: #dc2626; color: white; font-weight: 600; font-size: 0.9rem; border-radius: 4px;">Statnett</div>
+                            <div style="padding: 0.5rem; background: #facc15; color: black; font-weight: 600; font-size: 0.9rem; border-radius: 4px;">Vestre</div>
+                            <div style="padding: 0.5rem; background: #2563eb; color: white; font-weight: 600; font-size: 0.9rem; border-radius: 4px;">Inspera</div>
+                        </div>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="job-header">
+                            <div>
+                                <h3 class="job-title">NORCCIS hjelpedokumentasjon</h3>
+                                <p class="company">Forsvarsmateriell (FMA)</p>
+                            </div>
+                            <div class="job-period">
+                                2024
+                            </div>
+                        </div>
+                        <div class="job-description">
+                            Oversettelse, design og informasjonsarkitektur for hjelpedokumentasjon for NORCCIS. Prosjektet inneholdt omfattende innholdsdesign med organisering og strukturering av kompleks teknisk informasjon. Utvikling av navigasjon og interaksjonsdesign, utvikling av en standard for universell utforming i løsningen og en mal for klarspråk. Brukertester utført i en tidlig fase.
+
+                            <div style="margin-top: 1rem; padding: 1rem; background: #f8fafc; border-radius: 8px; border-left: 3px solid #1e40af;">
+                                <p style="font-style: italic; color: var(--text-muted); margin: 0; font-size: 0.9rem;">
+                                    📋 <strong>Leveranser:</strong> Trådskisser på seksjonssider og søkeside, valg av tredjepartsløsning,
+                                    standarder for universell utforming og språk, visuelle retningslinjer, brukerhistorier og brukertester
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="job-header">
+                            <div>
+                                <h3 class="job-title">Icebox</h3>
+                                <p class="company">Statnett</p>
+                            </div>
+                            <div class="job-period">
+                                2020
+                            </div>
+                        </div>
+                        <div class="job-description">
+                            Tjenestedesignprosjekt for å kartlegge dagens arbeidsrutiner og se på mulighetene for å forbedre og sikre dem. Prosessen ble i stor grad utført digitalt på grunn av pandemi. Intervju med personer som jobber på stasjoner flere steder i Norge. Samarbeid med Meteorologisk institutt, Norconsult og SINTEF for å identifisere og visualisere dataelementer til bruk i et dashboard for stasjonene.
+
+                            <div style="margin-top: 1rem; padding: 1rem; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 8px;">
+                                <p style="margin: 0; font-size: 0.9rem; color: var(--text-dark);">
+                                    📊 <strong>Visualiseringer:</strong> Sanntidsovervåkning av islast på ledninger,
+                                    kart med prognoser, dashboards i Grafana med værdataelementer fra Meteorologisk institutt
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="job-header">
+                            <div>
+                                <h3 class="job-title">Springstar</h3>
+                                <p class="company">Telia Norge AS</p>
+                            </div>
+                            <div class="job-period">
+                                2019-2020
+                            </div>
+                        </div>
+                        <div class="job-description">
+                            UX Lead for prosjektet som inkluderte Gets tjenester i Telias merkevare. Prosjektet påvirket en mengde kunder, både privatkunder, bedriftskunder og borettslag. Hadde totalansvar for brukeropplevelsen på både innloggede og utloggede sider, og ledet designstrategien i sammenslåingen. Oppdaterte og utvidet Telias designsystem med nye komponenter og mønstre gjennom jevnlige designmøter med ressurser fra begge selskap. Ledet, og deltok i, omfattende innhenting av brukerinnsikt gjennom intervjuer, testing og workshops. Designet kritiske touchpoints som forside, seksjonssider og overgangssider.
+
+                            <div style="margin-top: 1rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                <div style="padding: 0.75rem; background: #f3e8ff; border-radius: 6px; border: 1px solid #c4b5fd;">
+                                    <p style="margin: 0; font-size: 0.85rem; color: var(--text-muted);">
+                                        🎯 <strong>Landingssider:</strong> "Nå blir Get til Telia" - TV, internett og mobil
+                                    </p>
+                                </div>
+                                <div style="padding: 0.75rem; background: #f3e8ff; border-radius: 6px; border: 1px solid #c4b5fd;">
+                                    <p style="margin: 0; font-size: 0.85rem; color: var(--text-muted);">
+                                        📊 <strong>A/B-testing:</strong> Optimerte konvertering på kritiske sider
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </section>
+
+                <section class="section fade-in" aria-labelledby="experience-heading">
+                    <h2 id="experience-heading" class="section-title"><i class="fas fa-briefcase"></i> Arbeidserfaring</h2>
+
+                    <div class="experience-item">
+                        <div class="job-header">
+                            <div>
+                                <h3 class="job-title">Senior UX Designer</h3>
+                                <p class="company">Fryde</p>
+                            </div>
+                            <div class="job-period">
+                                2024 - Present<br>
+                                Oslo, Norway
+                            </div>
+                        </div>
+                        <div class="job-description">
+                            Jobber som senior UX- og tjenestedesigner og innholdsdesigner. Nylige prosjekter inkluderer ANTI, hvor det blant annet ble jobbet med LLM-løsninger knyttet til formidling av budskap, og Forsvarsmateriell med innholdsdesign, interaksjonsdesign, brukertesting og universell utforming.
+                        </div>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="job-header">
+                            <div>
+                                <h3 class="job-title">Senior UX- og tjenestedesigner</h3>
+                                <p class="company">Hoi! Oslo</p>
+                            </div>
+                            <div class="job-period">
+                                2021 - 2024<br>
+                                Oslo, Norway
+                            </div>
+                        </div>
+                        <div class="job-description">
+                            UX- og tjenestedesignprosjekter for kunder som Airthings, Vestre, Whee!, Inspera og Kigo.
+                            Tverrfaglig samarbeid, innsikt, prototyping, brukertesting og workshopfasilitering.
+                            Jobbet med designsystem, tilgjengelighet og hele tiden med designprosess.
+                        </div>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="job-header">
+                            <div>
+                                <h3 class="job-title">Senior UX Designer</h3>
+                                <p class="company">Webstep</p>
+                            </div>
+                            <div class="job-period">
+                                2020 - 2021<br>
+                                Oslo, Norway
+                            </div>
+                        </div>
+                        <div class="job-description">
+                            Senior UX Designer med fokus på tjenestedesign og komplekse brukeropplevelser. Jobbet blant annet med å starte opp et designsystem for Webmed og prioritering av designoppgaver inn i utviklingssprinter. I prosjektet Icebox i Statnett med tjenestedesign for arbeidet med strøm på kraftledninger.
+                        </div>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="job-header">
+                            <div>
+                                <h3 class="job-title">UX Designer & UX Lead</h3>
+                                <p class="company">Telia Norge</p>
+                            </div>
+                            <div class="job-period">
+                                2015 - 2020<br>
+                                Oslo, Norway
+                            </div>
+                        </div>
+                        <div class="job-description">
+                            UX Designer og UX Lead i Telia i flere produktteam som jobbet med selvbetjente løsninger, eksempelvis Min side, Telia App og Min Bedrift. Jobbet som eneste UX Designer i tverrfaglige team og på tvers i Telias UX-avdeling.<br><br>
+
+                            <strong>Telia App (2016-2019):</strong> Design av native apper for iOS og Android. Appene ble overtatt fra Telia Sverige og måtte tilpasses norske marked. Implementerte Vipps-betaling og utarbeidet Svitsj-funksjonalitet på tvers av alle Telias innloggede løsninger.<br><br>
+
+                            <strong>Min Bedrift (2015-2019):</strong> Håndterte kompleks innloggingsproblematikk med forskjellige kontoer og roller. Daglig drift og videreutvikling av funksjoner for bedriftskunder, utarbeidelse og lansering av funksjonaliteten Kostnadsdeling.<br><br>
+
+                            <strong>Springstar (2019-2020):</strong> Jobbet som UX lead i prosjektet hvor Get skulle inkluderes i Telias merkevare. Ledet oppdateringer av designsystem, gjorde brukerinnsikt og testing, styrte faglige diskusjoner i design, deltok i prosjektmøter med innholdslead og techlead. Hadde totalansvar for brukeropplevelsen på både innloggede og utloggede sider.
+                        </div>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="job-header">
+                            <div>
+                                <h3 class="job-title">UX Designer</h3>
+                                <p class="company">Fronter (It's Learning)</p>
+                            </div>
+                            <div class="job-period">
+                                2015<br>
+                                Oslo, Norway
+                            </div>
+                        </div>
+                        <div class="job-description">
+                            UX Designer for utviklingen av Fronter Planner, en responsiv løsning for elever og lærere som kunne kobles mot læringsmål og Feide. Gjennomførte behovs- og brukerinnsikt ved å delta i undervisning, intervjue elever og lærere, og få tilbakemeldinger på tidlige versjoner av løsningen gjennom pilotbrukere.
+                        </div>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="job-header">
+                            <div>
+                                <h3 class="job-title">UX Designer</h3>
+                                <p class="company">Amedia (Corporate venture)</p>
+                            </div>
+                            <div class="job-period">
+                                2014 - 2015<br>
+                                Oslo, Norway
+                            </div>
+                        </div>
+                        <div class="job-description">
+                            UX Designer for Corporate venture-prosjektet Trenger.no og Leiendom. Konseptet til Trenger.no var lokasjonsbaserte søkeresultater når du "trengte no". Løsningen ble utviklet gjennom Google design sprints, iterativ utvikling med Scrum og pilottesting med utvalgte brukere. Jobbet som UX Lead med ansvar for brukerundersøkelser, brukerintervjuer og workshops.
+                        </div>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="job-header">
+                            <div>
+                                <h3 class="job-title">Seniorkonsulent</h3>
+                                <p class="company">Capgemini</p>
+                            </div>
+                            <div class="job-period">
+                                2013 - 2014<br>
+                                Oslo, Norway
+                            </div>
+                        </div>
+                        <div class="job-description">
+                            Seniorkonsulent med ansvar for opprettelse av designavdeling. Jobbet med tilbud, universell utforming og heuristisk evaluering. Bidro til å etablere UX-kompetanse i organisasjonen og utvikle prosesser for brukersentrert design.
+                        </div>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="job-header">
+                            <div>
+                                <h3 class="job-title">Interaksjonsdesigner</h3>
+                                <p class="company">Logica (CGI)</p>
+                            </div>
+                            <div class="job-period">
+                                2010 - 2013<br>
+                                Oslo, Norway
+                            </div>
+                        </div>
+                        <div class="job-description">
+                            Fagansvarlig interaksjonsdesign med prosjekter for Sintef, Thon Hotels, Thon Shopping, Vinmonopolet, Flexit, Steen og Strøm, NSB (Vy) og Jernbaneverket (Bane Nor). Jobbet med interaksjonsdesign, HTML, CSS & Javascript, Photoshop, Illustrator, brukertesting, brukerintervjuer, wireframes, universell utforming, informasjonsarkitektur, prototyping og konseptutvikling.
+                        </div>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="job-header">
+                            <div>
+                                <h3 class="job-title">Webkonsulent</h3>
+                                <p class="company">Oslo kommune</p>
+                            </div>
+                            <div class="job-period">
+                                2009 - 2010<br>
+                                Oslo, Norway
+                            </div>
+                        </div>
+                        <div class="job-description">
+                            Utvikling av tjenestekatalog hos Utviklings- og kompetanseetaten i Oslo kommune. Intervjuet systemeiere for alle systemene som var i bruk og laget en oversikt over disse i Confluence. Jobbet med interaksjonsdesign og informasjonsarkitektur for kommunale tjenester.
+                        </div>
+                    </div>
+
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Smooth scroll animations
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.fade-in');
+
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Trigger animation on scroll
+        window.addEventListener('scroll', animateOnScroll);
+
+        // Trigger animation on load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add initial delay for smoother loading
+            setTimeout(animateOnScroll, 300);
+
+            // Add typing effect to name
+            const nameElement = document.querySelector('.profile-info h1');
+            const originalText = nameElement.textContent;
+            nameElement.textContent = '';
+
+            let i = 0;
+            function typeWriter() {
+                if (i < originalText.length) {
+                    nameElement.textContent += originalText.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 150);
+                }
+            }
+
+            setTimeout(typeWriter, 1000);
+        });
+
+        // Add click effect to skill items
+        document.querySelectorAll('.skill-item').forEach(skill => {
+            skill.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+
+        // Shuffle skills on page load
+        function shuffleSkills() {
+            const container = document.getElementById('skills-container');
+            const items = Array.from(container.children);
+
+            // Fisher-Yates shuffle
+            for (let i = items.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [items[i], items[j]] = [items[j], items[i]];
+            }
+
+            // Clear container and re-add shuffled items
+            container.innerHTML = '';
+            items.forEach(item => container.appendChild(item));
+        }
+
+        // Shuffle on page load
+        shuffleSkills();
+    </script>
+</body>
+</html>
