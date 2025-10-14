@@ -301,27 +301,12 @@
             border: 2px solid transparent;
         }
 
-        .skill-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .skill-item:hover::before {
-            left: 100%;
-        }
-
         .skill-item:hover {
-            transform: scale(1.05);
-            border-color: var(--primary-color);
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-            box-shadow: 0 8px 25px rgba(45, 138, 105, 0.3);
+            background: var(--primary-color);
+            color: white;
         }
+
+
 
         .education-item {
             background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
@@ -417,6 +402,11 @@
             border-bottom: 1px solid #e2e8f0;
         }
 
+        .language-level:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
         .language-item:last-child {
             border-bottom: none;
         }
@@ -427,12 +417,13 @@
         }
 
         .language-level {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+            background: #374151;
             color: var(--white);
             padding: 0.25rem 0.75rem;
             border-radius: 1rem;
             font-size: 0.8rem;
             font-weight: 500;
+            transition: var(--transition);
         }
 
         .certification-item, .position-item {
@@ -647,7 +638,9 @@
                             </span>
                         </div>
                         <div class="contact-item">
-                            <i class="fab fa-bluesky contact-icon"></i>
+                            <svg class="contact-icon" width="16" height="16" viewBox="0 0 568 501" fill="currentColor" style="color: var(--primary-color);">
+                                <path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 572.119 301.061 422.4 284 284C266.939 422.4 214.527 572.119 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0533 296.954 15.7778 224.501C9.94444 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1333 1.61183 123.121 33.6637Z"/>
+                            </svg>
                             <span class="contact-label">Bluesky:</span>
                             <span class="contact-value">
                                 <a href="https://bsky.app/profile/anniken.bsky.social" target="_blank">anniken.bsky.social</a>
@@ -728,12 +721,12 @@
                         <div class="skill-item">Løsnings&shy;spesifisering</div>
                         <div class="skill-item">Behovs&shy;analyse</div>
                         <div class="skill-item">Wayfinding</div>
-                        <div class="skill-item">Tjenesteutvikling</div>
+                        <div class="skill-item">Tjeneste&shy;utvikling</div>
                         <div class="skill-item">Ressurs&shy;styring</div>
                         <div class="skill-item">Dashboard</div>
                         <div class="skill-item">Bruker&shy;undersøkelser</div>
                         <div class="skill-item">Rådgiving</div>
-                        <div class="skill-item">Konseptutvikling</div>
+                        <div class="skill-item">Konsept&shy;utvikling</div>
                     </div>
                 </section>
             </aside>
