@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anniken Hogstad - Senior UX- og tjenestedesigner</title>
+    <meta name="description" content="Portfolio for Anniken Hogstad, senior UX- og tjenestedesigner med 15+ års erfaring. Spesialist på komplekse brukeropplevelser og tjenestedesign.">
+
+    <!-- Preconnect for faster font loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-green: #2d8a69;
+            --primary-coral: #ff8a7a;
+            --primary-navy: #2a3f63;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --white: #ffffff;
+            --black: #000000;
+
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+            --border-radius-sm: 0.375rem;
+            --border-radius-md: 0.5rem;
+            --border-radius-lg: 0.75rem;
+            --border-radius-xl: 1rem;
+            --border-radius-2xl: 1.5rem;
+
+            --transition-fast: 0.2s ease;
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.5s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--gray-800);
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* Skip to main content for screen readers */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: var(--primary-green);
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            border-radius: var(--border-radius-sm);
+            z-index: 1000;
+            font-weight: 500;
+        }
+
+        .skip-link:focus {
+            top: 6px;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--gray-200);
+            z-index: 100;
+            transition: var(--transition-normal);
+        }
+
+        .nav.scrolled {
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--gray-700);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition-fast);
+            position: relative;
+        }
+
+        .nav-link:hover,
+        .nav-link:focus {
+            color: var(--primary-green);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-green);
+            transition: var(--transition-normal);
+        }
+
+        .nav-link:hover::after,
+        .nav-link:focus::after {
+            width: 100%;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--gray-700);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 2rem 4rem;
+            background: linear-gradient(135deg, #f9fafb 0%, #e5e7eb 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(45, 138, 105, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 138, 122, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(42, 63, 99, 0.05) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.5rem;
+            color: var(--primary-green);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-content .description {
+            font-size: 1.2rem;
+            color: var(--gray-600);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.875rem 2rem;
+            border-radius: var(--border-radius-lg);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition-normal);
+            cursor: pointer;
+            border: 2px solid transparent;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-green);
+            color: white;
+        }
+
+        .btn-primary:hover,
+        .btn-primary:focus {
+            background: #257a5e;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-navy);
+            border-color: var(--primary-navy);
+        }
+
+        .btn-secondary:hover,
+        .btn-secondary:focus {
+            background: var(--primary-navy);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-image {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+            transition: var(--transition-slow);
+            border: 8px solid white;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 6rem 2rem;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--gray-600);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--gray-50);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--gray-700);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: var(--border-radius-xl);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-normal);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--gray-600);
+            font-weight: 500;
+        }
+
+        /* Projects Section */
+        .projects {
+            background: white;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: var(--border-radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition-normal);
+            border: 1px solid var(--gray-200);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-normal);
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.05);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .project-header {
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--primary-navy) 0%, var(--primary-green) 100%);
+            color: white;
+        }
+
+        .project-company {
+            font-size: 0.875rem;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .project-subtitle {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-description {
+            color: var(--gray-700);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tag {
+            padding: 0.375rem 0.75rem;
+            background: var(--gray-100);
+            color: var(--gray-700);
+            border-radius: var(--border-radius-md);
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .project-highlights {
+            background: var(--gray-50);
+            padding: 1.5rem;
+            border-radius: var(--border-radius-lg);
+            margin-top: 1rem;
+        }
+
+        .project-highlights h4 {
+            color: var(--primary-navy);
+            margin-bottom: 0.75rem;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .project-highlights ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .project-highlights li {
+            padding: 0.25rem 0;
+            color: var(--gray-700);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .project-highlights li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary-green);
+            font-weight: 600;
+        }
+
+        /* Skills Section */
+        .skills {
+            background: var(--gray-50);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius-xl);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-normal);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .skill-category h3 {
+            color: var(--primary-navy);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-category i {
+            color: var(--primary-green);
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-item {
+            padding: 0.5rem 1rem;
+            background: var(--gray-100);
+            color: var(--gray-700);
+            border-radius: var(--border-radius-md);
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: var(--transition-fast);
+        }
+
+        .skill-item:hover {
+            background: var(--primary-green);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--primary-navy);
+            color: white;
+        }
+
+        .contact .section-title {
+            color: white;
+        }
+
+        .contact .section-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .contact-info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: var(--border-radius-xl);
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            border-radius: var(--border-radius-lg);
+            transition: var(--transition-fast);
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--primary-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+        }
+
+        .contact-details h4 {
+            margin-bottom: 0.25rem;
+            font-weight: 600;
+        }
+
+        .contact-details p {
+            opacity: 0.8;
+        }
+
+        .contact-details a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .contact-details a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-cta {
+            text-align: center;
+        }
+
+        .contact-cta h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .contact-cta p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--gray-900);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .footer p {
+            opacity: 0.7;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100vh;
+                background: white;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: var(--transition-normal);
+                z-index: 999;
+            }
+
+            .nav-links.open {
+                left: 0;
+            }
+
+            .nav-toggle {
+                display: block;
+                z-index: 1000;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-cta {
+                justify-content: center;
+            }
+
+            .profile-image {
+                width: 250px;
+                height: 250px;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .section {
+                padding: 4rem 1rem;
+            }
+
+            .nav-container {
+                padding: 1rem;
+            }
+
+            .hero {
+                padding: 6rem 1rem 4rem;
+            }
+        }
+
+        /* Focus styles for accessibility */
+        .btn:focus,
+        .nav-link:focus,
+        .skill-item:focus {
+            outline: 3px solid var(--primary-coral);
+            outline-offset: 2px;
+        }
+
+        /* Reduced motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--gray-100);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-green);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #257a5e;
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Hopp til hovedinnhold</a>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">AH</a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#home" class="nav-link">Hjem</a></li>
+                <li><a href="#about" class="nav-link">Om meg</a></li>
+                <li><a href="#projects" class="nav-link">Prosjekter</a></li>
+                <li><a href="#skills" class="nav-link">Kompetanse</a></li>
+                <li><a href="#contact" class="nav-link">Kontakt</a></li>
+            </ul>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1>Anniken Hogstad</h1>
+                    <p class="subtitle">Senior UX- og tjenestedesigner</p>
+                    <p class="description">
+                        Med 15+ års erfaring skaper jeg brukervennlige løsninger som løser komplekse tekniske utfordringer.
+                        Jeg kombinerer analytisk dybde med kreativ problemløsning for å drive endringsprosesser fremover.
+                    </p>
+                    <div class="hero-cta">
+                        <a href="#projects" class="btn btn-primary">
+                            <i class="fas fa-eye"></i>
+                            Se prosjekter
+                        </a>
+                        <a href="index.html" class="btn btn-secondary">
+                            <i class="fas fa-file-alt"></i>
+                            Se CV
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            <i class="fas fa-envelope"></i>
+                            Ta kontakt
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="profile-image">
+                        <img src="images/profile.png" alt="Profilbilde av Anniken Hogstad">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="section about" id="about">
+            <div class="section-container">
+                <div class="section-header fade-in">
+                    <h2 class="section-title">Om meg</h2>
+                    <p class="section-subtitle">
+                        Analytisk kreativitet møter brukersentrert design
+                    </p>
+                </div>
+                <div class="about-content">
+                    <div class="about-text fade-in slide-in-left">
+                        <p>
+                            Som senior UX- og tjenestedesigner har jeg utviklet en unik kompetanse i å løse komplekse tekniske utfordringer på tvers av både offentlig og privat sektor. Jeg kombinerer analytisk dybde med kreativ problemløsning, og har en dokumentert evne til raskt å sette meg inn i nye fagområder.
+                        </p>
+                        <p>
+                            Min erfaring fra prosjekter hos Forsvarsmateriell og Statnett demonstrerer min evne til å navigere i komplekse organisatoriske landskap og drive endringsprosesser fremover. Jeg forstår dynamikken mellom teknologi og manuell saksbehandling, og har utviklet en helhetlig tilnærming som skaper reell verdi.
+                        </p>
+                        <p>
+                            Gjennom systematisk innhenting og analyse av brukerinnsikt identifiserer jeg kritiske forbedringsområder og flaskehalser i prosesser. Jeg skaper en felles forståelse og felles målbilder, på tvers av team og interessenter.
+                        </p>
+                    </div>
+                    <div class="about-stats fade-in slide-in-right">
+                        <div class="stat-item">
+                            <div class="stat-number">15+</div>
+                            <div class="stat-label">År med erfaring</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Prosjekter levert</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">10+</div>
+                            <div class="stat-label">Bedrifter hjulpet</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">∞</div>
+                            <div class="stat-label">Brukere påvirket</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="section projects" id="projects">
+            <div class="section-container">
+                <div class="section-header fade-in">
+                    <h2 class="section-title">Utvalgte prosjekter</h2>
+                    <p class="section-subtitle">
+                        Fra kompleks dokumentasjon til intuitive dashboards - se hvordan jeg løser utfordringer
+                    </p>
+                </div>
+                <div class="projects-grid">
+                    <!-- NORCCIS Project -->
+                    <div class="project-card fade-in">
+                        <div class="project-image">
+                            <img src="images/norccis.png" alt="NORCCIS Help Centre design og navigasjonsstruktur" loading="lazy">
+                        </div>
+                        <div class="project-header">
+                            <div class="project-company">Forsvarsmateriell (FMA)</div>
+                            <h3 class="project-title">NORCCIS Hjelpedokumentasjon</h3>
+                            <p class="project-subtitle">Oversettelse, design og informasjonsarkitektur for kritisk militær systemdokumentasjon</p>
+                        </div>
+                        <div class="project-content">
+                            <p class="project-description">
+                                Omfattende innholdsdesign med organisering og strukturering av kompleks teknisk informasjon.
+                                Utviklet navigasjon og interaksjonsdesign, standarder for universell utforming og maler for klarspråk.
+                            </p>
+                            <div class="project-tags">
+                                <span class="project-tag">Informasjonsarkitektur</span>
+                                <span class="project-tag">Universell utforming</span>
+                                <span class="project-tag">Brukertesting</span>
+                                <span class="project-tag">Klarspråk</span>
+                            </div>
+                            <div class="project-highlights">
+                                <h4>Hovedleveranser</h4>
+                                <ul>
+                                    <li>Trådskisser på seksjonssider og søkeside</li>
+                                    <li>Valg og evaluering av tredjepartsløsning</li>
+                                    <li>Standarder for universell utforming og språk</li>
+                                    <li>Visuelle retningslinjer og brukerhistorier</li>
+                                    <li>Gjennomført brukertester i tidlig fase</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Icebox Project -->
+                    <div class="project-card fade-in">
+                        <div class="project-image">
+                            <img src="images/icebox.png" alt="Icebox dashboard for overvåkning av islast på kraftledninger - Statnett" loading="lazy">
+                        </div>
+                        <div class="project-header">
+                            <div class="project-company">Statnett</div>
+                            <h3 class="project-title">Icebox</h3>
+                            <p class="project-subtitle">Tjenestedesign for overvåkning av islast på kraftledninger</p>
+                        </div>
+                        <div class="project-content">
+                            <p class="project-description">
+                                Tjenestedesignprosjekt for å kartlegge arbeidsrutiner og forbedre sikkerhet ved stasjoner.
+                                Samarbeidet med Meteorologisk institutt, Norconsult og SINTEF for å identifisere og visualisere kritiske dataelementer.
+                            </p>
+                            <div class="project-tags">
+                                <span class="project-tag">Tjenestedesign</span>
+                                <span class="project-tag">Datavisualisering</span>
+                                <span class="project-tag">Dashboard</span>
+                                <span class="project-tag">Værdata</span>
+                            </div>
+                            <div class="project-highlights">
+                                <h4>Høydepunkter</h4>
+                                <ul>
+                                    <li>Sanntidsovervåkning av islast på ledninger</li>
+                                    <li>Interaktive kart med værdataprognoser</li>
+                                    <li>Dashboards i Grafana med Meteorologisk data</li>
+                                    <li>Intervjuer med operatører på stasjoner i hele Norge</li>
+                                    <li>Digital prosess tilpasset pandemisituasjon</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Springstar Project -->
+                    <div class="project-card fade-in">
+                        <div class="project-image">
+                            <img src="images/springstar.png" alt="Telia Springstar merkevareslåing og designsystem" loading="lazy">
+                        </div>
+                        <div class="project-header">
+                            <div class="project-company">Telia Norge</div>
+                            <h3 class="project-title">Springstar</h3>
+                            <p class="project-subtitle">UX Lead for Gets overgang til Telia-merkevaren</p>
+                        </div>
+                        <div class="project-content">
+                            <p class="project-description">
+                                Ledet designstrategien i sammenslåingen av Get og Telia. Totalansvar for brukeropplevelsen på både innloggede og utloggede sider.
+                                Utvidet Telias designsystem med nye komponenter og mønstre.
+                            </p>
+                            <div class="project-tags">
+                                <span class="project-tag">UX Lead</span>
+                                <span class="project-tag">Designsystem</span>
+                                <span class="project-tag">Merkevareslåing</span>
+                                <span class="project-tag">A/B-testing</span>
+                            </div>
+                            <div class="project-highlights">
+                                <h4>Resultater</h4>
+                                <ul>
+                                    <li>Landingssider: "Nå blir Get til Telia"</li>
+                                    <li>A/B-testing for konverteringsoptimering</li>
+                                    <li>Omfattende brukerinnsikt gjennom intervjuer</li>
+                                    <li>Designet kritiske touchpoints og overgangssider</li>
+                                    <li>Påvirket millioner av kunder på tvers av segmenter</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="section skills" id="skills">
+            <div class="section-container">
+                <div class="section-header fade-in">
+                    <h2 class="section-title">Kompetanse</h2>
+                    <p class="section-subtitle">
+                        Fra strategi til implementering - en helhetlig tilnærming til brukeropplevelse
+                    </p>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-category fade-in">
+                        <h3><i class="fas fa-users"></i> UX & Tjenestedesign</h3>
+                        <div class="skill-list">
+                            <span class="skill-item">UX Design</span>
+                            <span class="skill-item">Tjenestedesign</span>
+                            <span class="skill-item">Brukertesting</span>
+                            <span class="skill-item">Brukerundersøkelser</span>
+                            <span class="skill-item">Prototyping</span>
+                            <span class="skill-item">Workshopfasilitering</span>
+                            <span class="skill-item">Behovsanalyse</span>
+                            <span class="skill-item">Konseptutvikling</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category fade-in">
+                        <h3><i class="fas fa-palette"></i> Design & Visualisering</h3>
+                        <div class="skill-list">
+                            <span class="skill-item">Figma</span>
+                            <span class="skill-item">Designsystem</span>
+                            <span class="skill-item">Interaksjonsdesign</span>
+                            <span class="skill-item">Datavisualisering</span>
+                            <span class="skill-item">Dashboard</span>
+                            <span class="skill-item">Prototyping</span>
+                            <span class="skill-item">Miro</span>
+                            <span class="skill-item">Grafana</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category fade-in">
+                        <h3><i class="fas fa-brain"></i> Strategi & Analyse</h3>
+                        <div class="skill-list">
+                            <span class="skill-item">Brukerinnsikt</span>
+                            <span class="skill-item">Informasjonsarkitektur</span>
+                            <span class="skill-item">Løsningsspesifisering</span>
+                            <span class="skill-item">Tjenesteutvikling</span>
+                            <span class="skill-item">Kjernemodellen</span>
+                            <span class="skill-item">Wayfinding</span>
+                            <span class="skill-item">Ressursstyring</span>
+                            <span class="skill-item">Rådgiving</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category fade-in">
+                        <h3><i class="fas fa-universal-access"></i> Tilgjengelighet & Innhold</h3>
+                        <div class="skill-list">
+                            <span class="skill-item">Universell utforming</span>
+                            <span class="skill-item">WCAG</span>
+                            <span class="skill-item">Klarspråk</span>
+                            <span class="skill-item">UX Writing</span>
+                            <span class="skill-item">Innholdsdesign</span>
+                            <span class="skill-item">Oversettelse</span>
+                            <span class="skill-item">Teknisk dokumentasjon</span>
+                            <span class="skill-item">Språkstrategi</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="section contact" id="contact">
+            <div class="section-container">
+                <div class="section-header fade-in">
+                    <h2 class="section-title">La oss samarbeide</h2>
+                    <p class="section-subtitle">
+                        Har du et spennende prosjekt eller vil vite mer om min tilnærming til design?
+                    </p>
+                </div>
+                <div class="contact-content">
+                    <div class="contact-info fade-in slide-in-left">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>E-post</h4>
+                                <p><a href="mailto:annikenh@proton.me">annikenh@proton.me</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Telefon</h4>
+                                <p>+47 993 90 673</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fab fa-linkedin"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>LinkedIn</h4>
+                                <p><a href="https://www.linkedin.com/in/annikenhogstad/" target="_blank" rel="noopener">linkedin.com/in/annikenhogstad</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Lokasjon</h4>
+                                <p>Oslo, Norge</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-cta fade-in slide-in-right">
+                        <h3>Klar for å starte?</h3>
+                        <p>Jeg hjelper deg med å skape brukeropplevelser som gjør en forskjell. Ta kontakt for en uforpliktende samtale om ditt prosjekt.</p>
+                        <a href="mailto:annikenh@proton.me" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                            Send melding
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="section-container">
+            <p>&copy; 2024 Anniken Hogstad. Alle rettigheter reservert.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation functionality
+        const nav = document.getElementById('nav');
+        const navToggle = document.getElementById('nav-toggle');
+        const navLinks = document.getElementById('nav-links');
+
+        // Mobile menu toggle
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+            const icon = navToggle.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+                const icon = navToggle.querySelector('i');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animation elements
+        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80; // Account for fixed navbar
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add hover effect to project cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(-10px)';
+            });
+        });
+
+        // Add click effect to skill items
+        document.querySelectorAll('.skill-item').forEach(skill => {
+            skill.addEventListener('click', function() {
+                this.style.transform = 'translateY(-2px) scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'translateY(-2px)';
+                }, 150);
+            });
+        });
+
+        // Typing effect for hero title
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.textContent = '';
+
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+
+            type();
+        }
+
+        // Initialize typing effect on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                const heroTitle = document.querySelector('.hero-content h1');
+                const originalText = heroTitle.textContent;
+                typeWriter(heroTitle, originalText, 100);
+            }, 500);
+        });
+
+        // Add parallax effect to hero background
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Enhanced keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                navLinks.classList.remove('open');
+                const icon = navToggle.querySelector('i');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            }
+        });
+
+        // Performance optimization: Lazy load animations
+        const animationElements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right');
+
+        const animationObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100); // Stagger animations
+                    animationObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        animationElements.forEach(el => {
+            animationObserver.observe(el);
+        });
+    </script>
+</body>
+</html>
