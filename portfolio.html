@@ -844,7 +844,7 @@
                     <h1>Anniken Hogstad</h1>
                     <p class="subtitle">Senior UX- og tjenestedesigner</p>
                     <p class="description">
-                        Med 15+ års erfaring jobber jeg i tverrfaglige team for å skape brukervennlige løsninger som løser komplekse utfordringer. Jeg kombinerer analytisk dybde med kreativ problemløsning for å drive endringsprosesser fremover.
+                        Jeg har over 15 års erfaring med å jobbe i tverrfaglige team for å skape brukervennlige løsninger som løser komplekse utfordringer. Jeg kombinerer analytisk dybde med kreativ problemløsning for å drive endringsprosesser fremover.
                     </p>
                     <div class="hero-cta">
                         <a href="#projects" class="btn btn-primary">
@@ -875,16 +875,16 @@
                 <div class="section-header fade-in">
                     <h2 class="section-title">Om meg</h2>
                     <p class="section-subtitle">
-                        Analytisk kreativitet møter brukersentrert design
+                        Brukersentrert design, tekst og interaksjon
                     </p>
                 </div>
                 <div class="about-content">
                     <div class="about-text fade-in slide-in-left">
                         <p>
-                            Som senior UX- og tjenestedesigner har jeg utviklet en unik kompetanse i å løse komplekse tekniske utfordringer på tvers av både offentlig og privat sektor. Jeg kombinerer analytisk dybde med kreativ problemløsning, og har en dokumentert evne til raskt å sette meg inn i nye fagområder.
+                            Som senior UX- og tjenestedesigner har jeg kompetanse på å løse komplekse utfordringer i både privat og offentlig sektor. Jeg setter meg raskt inn i nye fagområder, og kombinerer analytisk dybde med kreativ problemløsing.
                         </p>
                         <p>
-                            Min erfaring fra prosjekter hos Forsvarsmateriell og Statnett demonstrerer min evne til å navigere i komplekse organisatoriske landskap og drive endringsprosesser fremover. Jeg forstår dynamikken mellom teknologi og manuell saksbehandling, og har utviklet en helhetlig tilnærming som skaper reell verdi.
+                            Jeg har erfaring fra store, offentlige organisasjoner, startups og alt i mellom. Mine siste oppdrag har inkludert innholdsdesign, interaksjonsdesign, UX og strategi.
                         </p>
                         <p>
                             Gjennom systematisk innhenting og analyse av brukerinnsikt identifiserer jeg kritiske forbedringsområder og flaskehalser i prosesser. Jeg skaper en felles forståelse og felles målbilder, på tvers av team og interessenter.
@@ -1320,30 +1320,6 @@
             });
         });
 
-        // Typing effect for hero title
-        function typeWriter(element, text, speed = 100) {
-            let i = 0;
-            element.textContent = '';
-
-            function type() {
-                if (i < text.length) {
-                    element.textContent += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                }
-            }
-
-            type();
-        }
-
-        // Initialize typing effect on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(() => {
-                const heroTitle = document.querySelector('.hero-content h1');
-                const originalText = heroTitle.textContent;
-                typeWriter(heroTitle, originalText, 100);
-            }, 500);
-        });
 
         // Add parallax effect to hero background
         window.addEventListener('scroll', () => {
