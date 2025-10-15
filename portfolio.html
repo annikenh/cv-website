@@ -580,17 +580,21 @@
         }
 
         .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: start;
+            display: flex;
+            justify-content: center;
+            width: 100%;
         }
 
         .contact-info {
             background: rgba(255, 255, 255, 0.1);
             padding: 2rem;
             border-radius: var(--border-radius-xl);
+            width: 100%;
+            max-width: none;
             backdrop-filter: blur(10px);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
         }
 
         .contact-item {
@@ -753,8 +757,12 @@
             }
 
             .contact-content {
+                width: 100%;
+            }
+
+            .contact-info {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+                gap: 1rem;
             }
 
             .section {
