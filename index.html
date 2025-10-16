@@ -1020,21 +1020,6 @@
             // Add initial delay for smoother loading
             setTimeout(animateOnScroll, 300);
 
-            // Add typing effect to name
-            const nameElement = document.querySelector('.profile-info h1');
-            const originalText = nameElement.textContent;
-            nameElement.textContent = '';
-
-            let i = 0;
-            function typeWriter() {
-                if (i < originalText.length) {
-                    nameElement.textContent += originalText.charAt(i);
-                    i++;
-                    setTimeout(typeWriter, 150);
-                }
-            }
-
-            setTimeout(typeWriter, 1000);
         });
 
         // Add click effect to skill items
