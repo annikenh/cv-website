@@ -15,7 +15,7 @@
     <style>
         :root {
             --primary-color: #2a2a2a;
-            --accent-color: #ff6b35;
+            --accent-color: #d55a29;
             --accent-secondary: #f7931e;
             --text-dark: #1a1a1a;
             --text-light: #4a4a4a;
@@ -756,7 +756,7 @@
                 <li><a href="#skills" class="nav-link">Kompetanse</a></li>
                 <li><a href="#contact" class="nav-link">Kontakt</a></li>
             </ul>
-            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+            <button class="nav-toggle" id="nav-toggle" aria-label="Åpne navigasjon" aria-expanded="false">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
@@ -1128,7 +1128,7 @@
                             </div>
                             <div class="contact-details">
                                 <h4>LinkedIn</h4>
-                                <p><a href="https://www.linkedin.com/in/annikenhogstad/" target="_blank" rel="noopener">linkedin.com/in/annikenhogstad</a></p>
+                                <p><a href="https://www.linkedin.com/in/annikenhogstad/" target="_blank" rel="noopener" aria-label="LinkedIn-profil (åpnes i ny fane)">linkedin.com/in/annikenhogstad</a></p>
                             </div>
                         </div>
                         <div class="contact-item">
@@ -1139,7 +1139,7 @@
                             </div>
                             <div class="contact-details">
                                 <h4>Bluesky</h4>
-                                <p><a href="https://bsky.app/profile/annikenh.bsky.social" target="_blank" rel="noopener">@annikenh.bsky.social</a></p>
+                                <p><a href="https://bsky.app/profile/annikenh.bsky.social" target="_blank" rel="noopener" aria-label="Bluesky-profil (åpnes i ny fane)">@annikenh.bsky.social</a></p>
                             </div>
                         </div>
                         <div class="contact-item">
@@ -1172,10 +1172,14 @@
 
         // Mobile menu toggle
         navToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('open');
+            const isOpen = navLinks.classList.toggle('open');
             const icon = navToggle.querySelector('i');
             icon.classList.toggle('fa-bars');
             icon.classList.toggle('fa-times');
+
+            // Update ARIA attributes for accessibility
+            navToggle.setAttribute('aria-expanded', isOpen);
+            navToggle.setAttribute('aria-label', isOpen ? 'Lukk navigasjon' : 'Åpne navigasjon');
         });
 
         // Close mobile menu when clicking on a link
@@ -1185,6 +1189,10 @@
                 const icon = navToggle.querySelector('i');
                 icon.classList.add('fa-bars');
                 icon.classList.remove('fa-times');
+
+                // Update ARIA attributes
+                navToggle.setAttribute('aria-expanded', 'false');
+                navToggle.setAttribute('aria-label', 'Åpne navigasjon');
             });
         });
 
@@ -1249,6 +1257,10 @@
                 const icon = navToggle.querySelector('i');
                 icon.classList.add('fa-bars');
                 icon.classList.remove('fa-times');
+
+                // Update ARIA attributes
+                navToggle.setAttribute('aria-expanded', 'false');
+                navToggle.setAttribute('aria-label', 'Åpne navigasjon');
             }
         });
 
