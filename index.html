@@ -544,12 +544,15 @@
                 display: none;
             }
 
-            /* Natural page breaks between content sections */
+            /* Page breaks only after complete paragraphs */
+            p,
+            .job-description,
             .experience-item,
             .education-item,
             .certification-item,
             .position-item,
-            .section {
+            .contact-item,
+            .language-item {
                 page-break-inside: avoid;
             }
 
@@ -559,6 +562,14 @@
 
             .job-header {
                 page-break-after: avoid;
+            }
+
+            h1, h2, h3, h4, h5, h6 {
+                page-break-after: avoid;
+            }
+
+            ul, ol {
+                page-break-inside: avoid;
             }
         }
     </style>
