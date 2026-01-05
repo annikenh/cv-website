@@ -547,13 +547,17 @@
             /* Page breaks only after complete paragraphs */
             p,
             .job-description,
-            .experience-item,
+            .experience-item {
+                page-break-inside: avoid;
+            }
+
+            /* Sidebar items can break naturally */
             .education-item,
             .certification-item,
             .position-item,
             .contact-item,
             .language-item {
-                page-break-inside: avoid;
+                page-break-inside: auto;
             }
 
             .section-title {
@@ -572,23 +576,22 @@
                 page-break-inside: avoid;
             }
 
-            /* Force Contact section to new page */
-            #contact-section {
-                page-break-before: always;
-                page-break-inside: avoid;
-            }
-
-            .contact-info {
-                page-break-inside: avoid;
-            }
-
-            /* Left column page breaks */
+            /* Left column (sidebar) page breaks */
             #education-section {
-                page-break-after: always;
+                page-break-after: always !important;
+            }
+
+            #contact-section {
+                page-break-before: always !important;
             }
 
             #positions-section {
-                page-break-before: always;
+                page-break-before: always !important;
+            }
+
+            /* Allow sections in sidebar to break naturally */
+            .sidebar .section {
+                page-break-inside: auto;
             }
         }
     </style>
