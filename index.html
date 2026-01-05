@@ -533,6 +533,200 @@
             outline: 2px solid var(--text-dark);
             outline-offset: 2px;
         }
+
+        /* Print styles for PDF generation */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+                margin: 0;
+            }
+
+            .container {
+                max-width: 100%;
+                box-shadow: none;
+                background: white;
+            }
+
+            .header {
+                background: white;
+                border-bottom: 2px solid var(--text-dark);
+                padding: 1.5rem 1rem 1rem;
+                page-break-after: avoid;
+            }
+
+            .header::after {
+                background: var(--text-dark);
+                height: 2px;
+            }
+
+            .profile-image {
+                width: 100px;
+                height: 100px;
+                margin-bottom: 1rem;
+            }
+
+            .profile-info h1 {
+                font-size: 2rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .profile-info .subtitle {
+                font-size: 1rem;
+            }
+
+            .contact-links {
+                display: none;
+            }
+
+            .skip-link {
+                display: none;
+            }
+
+            .main-content {
+                padding: 1.5rem 1rem;
+                gap: 2rem;
+            }
+
+            .sidebar {
+                padding: 1rem 1rem 1rem 0;
+                border-right: 1px solid var(--text-dark);
+            }
+
+            .content-area {
+                padding: 0 0.5rem;
+            }
+
+            .section {
+                margin-bottom: 2rem;
+                page-break-inside: avoid;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+                margin-bottom: 1rem;
+                color: var(--text-dark);
+            }
+
+            .sidebar .section-title {
+                font-size: 0.9rem;
+            }
+
+            .experience-item {
+                padding: 0 0 1.5rem 0;
+                margin-bottom: 1.5rem;
+                border-bottom: 1px solid #ccc;
+                page-break-inside: avoid;
+            }
+
+            .job-title {
+                font-size: 1rem;
+            }
+
+            .company {
+                font-size: 0.9rem;
+            }
+
+            .job-period {
+                font-size: 0.85rem;
+            }
+
+            .job-description {
+                font-size: 0.9rem;
+                line-height: 1.5;
+            }
+
+            .skill-item {
+                background: white;
+                border: 1px solid #ccc;
+                padding: 0.4rem 0.6rem;
+                font-size: 0.85rem;
+                box-shadow: none;
+            }
+
+            .education-item,
+            .certification-item,
+            .position-item {
+                padding: 0 0 1rem 0;
+                margin-bottom: 1rem;
+                border-bottom: 1px solid #ccc;
+                page-break-inside: avoid;
+            }
+
+            .degree,
+            .certification-name,
+            .position-title {
+                font-size: 0.9rem;
+            }
+
+            .institution,
+            .certification-provider,
+            .position-organization {
+                font-size: 0.85rem;
+            }
+
+            .education-period,
+            .certification-period,
+            .position-period {
+                font-size: 0.8rem;
+            }
+
+            .contact-item {
+                margin-bottom: 1rem;
+                font-size: 0.85rem;
+            }
+
+            .contact-label {
+                font-size: 0.75rem;
+            }
+
+            .contact-value {
+                font-size: 0.85rem;
+            }
+
+            .contact-value a {
+                color: var(--text-dark);
+                text-decoration: none;
+            }
+
+            .language-item {
+                padding: 0.4rem 0;
+                border-bottom: 1px solid #ccc;
+            }
+
+            .language-name,
+            .language-level {
+                font-size: 0.85rem;
+            }
+
+            /* Ensure all text is dark enough for printing */
+            * {
+                color: #000 !important;
+                background: transparent !important;
+            }
+
+            .header,
+            .sidebar {
+                background: white !important;
+            }
+
+            a {
+                color: #000 !important;
+            }
+
+            /* Show link URLs for important contact info */
+            .contact-value a[href^="mailto:"]:after {
+                content: " (" attr(href) ")";
+                font-size: 0.8em;
+                color: #666 !important;
+            }
+
+            .contact-value a[href^="http"]:after {
+                content: " (" attr(href) ")";
+                font-size: 0.8em;
+                color: #666 !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -899,11 +1093,25 @@
 
             const element = document.querySelector('.container');
             const opt = {
-                margin: 10,
+                margin: [10, 10, 10, 10],
                 filename: 'Anniken-Hogstad_CV.pdf',
                 image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2, useCORS: true },
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                html2canvas: {
+                    scale: 2,
+                    useCORS: true,
+                    letterRendering: true,
+                    logging: false
+                },
+                jsPDF: {
+                    unit: 'mm',
+                    format: 'a4',
+                    orientation: 'portrait',
+                    compress: true
+                },
+                pagebreak: {
+                    mode: ['avoid-all', 'css', 'legacy'],
+                    avoid: ['.experience-item', '.section', '.education-item', '.certification-item', '.position-item']
+                }
             };
 
             html2pdf().set(opt).from(element).save();
