@@ -544,21 +544,21 @@
                 display: none;
             }
 
-            /* Specific page breaks for better PDF layout */
-            #languages-section {
-                page-break-before: always;
+            /* Natural page breaks between content sections */
+            .experience-item,
+            .education-item,
+            .certification-item,
+            .position-item,
+            .section {
+                page-break-inside: avoid;
             }
 
-            #hoi-oslo-experience {
-                page-break-before: always;
+            .section-title {
+                page-break-after: avoid;
             }
 
-            #amedia-experience {
-                page-break-after: always;
-            }
-
-            #design-visualization-skills {
-                page-break-after: always;
+            .job-header {
+                page-break-after: avoid;
             }
         }
     </style>
