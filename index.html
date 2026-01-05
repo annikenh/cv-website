@@ -552,7 +552,6 @@
                 background: white;
                 border-bottom: 2px solid var(--text-dark);
                 padding: 1.5rem 1rem 1rem;
-                page-break-after: avoid;
             }
 
             .header::after {
@@ -564,6 +563,12 @@
                 width: 100px;
                 height: 100px;
                 margin-bottom: 1rem;
+            }
+
+            .profile-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
             }
 
             .profile-info h1 {
@@ -599,7 +604,6 @@
 
             .section {
                 margin-bottom: 2rem;
-                page-break-inside: avoid;
             }
 
             .section-title {
@@ -616,7 +620,6 @@
                 padding: 0 0 1.5rem 0;
                 margin-bottom: 1.5rem;
                 border-bottom: 1px solid #ccc;
-                page-break-inside: avoid;
             }
 
             .job-title {
@@ -650,7 +653,6 @@
                 padding: 0 0 1rem 0;
                 margin-bottom: 1rem;
                 border-bottom: 1px solid #ccc;
-                page-break-inside: avoid;
             }
 
             .degree,
@@ -1109,8 +1111,7 @@
                     compress: true
                 },
                 pagebreak: {
-                    mode: ['avoid-all', 'css', 'legacy'],
-                    avoid: ['.experience-item', '.section', '.education-item', '.certification-item', '.position-item']
+                    mode: 'css'
                 }
             };
 
