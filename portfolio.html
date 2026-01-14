@@ -1346,15 +1346,13 @@
                 // Define sections to capture
                 const sections = [
                     { selector: '.hero', name: 'Hero' },
-                    { selector: '.about', name: 'About' },
-                    { selector: '.projects', name: 'Projects' },
-                    { selector: '.skills', name: 'Skills' },
-                    { selector: '.contact', name: 'Contact' }
+                    { selector: '.about', name: 'About' }
                 ];
 
                 let isFirstPage = true;
                 let currentYPosition = 10; // Start with 10mm margin
 
+                // Capture hero and about sections
                 for (const section of sections) {
                     const element = document.querySelector(section.selector);
                     if (!element) continue;
@@ -1395,6 +1393,95 @@
                     }
 
                     isFirstPage = false;
+                }
+
+                // Add projects section header
+                const projectsHeader = document.querySelector('.projects .section-header');
+                if (projectsHeader) {
+                    projectsHeader.scrollIntoView({ behavior: 'instant', block: 'start' });
+                    await new Promise(resolve => setTimeout(resolve, 200));
+
+                    const canvas = await html2canvas(projectsHeader, {
+                        scale: 2,
+                        useCORS: true,
+                        allowTaint: true,
+                        logging: false,
+                        backgroundColor: '#fafafa'
+                    });
+
+                    const imgData = canvas.toDataURL('image/jpeg', 0.95);
+                    const imgWidth = pdfWidth - 20;
+                    const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+                    if (currentYPosition + imgHeight > pdfHeight - 10) {
+                        pdf.addPage();
+                        currentYPosition = 10;
+                    }
+
+                    pdf.addImage(imgData, 'JPEG', 10, currentYPosition, imgWidth, imgHeight);
+                    currentYPosition += imgHeight + 5;
+                }
+
+                // Capture each project card individually
+                const projectCards = document.querySelectorAll('.project-card');
+                for (const card of projectCards) {
+                    card.scrollIntoView({ behavior: 'instant', block: 'center' });
+                    await new Promise(resolve => setTimeout(resolve, 300));
+
+                    const canvas = await html2canvas(card, {
+                        scale: 2,
+                        useCORS: true,
+                        allowTaint: true,
+                        logging: false,
+                        backgroundColor: '#ffffff'
+                    });
+
+                    const imgData = canvas.toDataURL('image/jpeg', 0.95);
+                    const imgWidth = pdfWidth - 20;
+                    const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+                    // Check if we need a new page
+                    if (currentYPosition + imgHeight > pdfHeight - 10) {
+                        pdf.addPage();
+                        currentYPosition = 10;
+                    }
+
+                    pdf.addImage(imgData, 'JPEG', 10, currentYPosition, imgWidth, imgHeight);
+                    currentYPosition += imgHeight + 5;
+                }
+
+                // Capture skills and contact sections
+                const endSections = [
+                    { selector: '.skills', name: 'Skills' },
+                    { selector: '.contact', name: 'Contact' }
+                ];
+
+                for (const section of endSections) {
+                    const element = document.querySelector(section.selector);
+                    if (!element) continue;
+
+                    element.scrollIntoView({ behavior: 'instant', block: 'start' });
+                    await new Promise(resolve => setTimeout(resolve, 200));
+
+                    const canvas = await html2canvas(element, {
+                        scale: 2,
+                        useCORS: true,
+                        allowTaint: true,
+                        logging: false,
+                        backgroundColor: section.name === 'Skills' ? '#ffffff' : '#2a2a2a'
+                    });
+
+                    const imgData = canvas.toDataURL('image/jpeg', 0.95);
+                    const imgWidth = pdfWidth - 20;
+                    const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+                    if (currentYPosition + imgHeight > pdfHeight - 10) {
+                        pdf.addPage();
+                        currentYPosition = 10;
+                    }
+
+                    pdf.addImage(imgData, 'JPEG', 10, currentYPosition, imgWidth, imgHeight);
+                    currentYPosition += imgHeight + 5;
                 }
 
                 // Save the PDF
