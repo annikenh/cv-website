@@ -1337,56 +1337,64 @@
             await new Promise(resolve => setTimeout(resolve, 500));
 
             try {
-                // Get body element to capture everything
-                const element = document.body;
-
-                // Take screenshot of the entire page
-                const canvas = await html2canvas(element, {
-                    scale: 2,
-                    useCORS: true,
-                    allowTaint: true,
-                    logging: false,
-                    width: element.scrollWidth,
-                    height: element.scrollHeight,
-                    windowWidth: element.scrollWidth,
-                    windowHeight: element.scrollHeight,
-                    x: 0,
-                    y: 0
-                });
-
                 // Create PDF
                 const { jsPDF } = window.jspdf;
                 const pdf = new jsPDF('p', 'mm', 'a4');
-
-                // PDF page dimensions in mm
                 const pdfWidth = pdf.internal.pageSize.getWidth();
                 const pdfHeight = pdf.internal.pageSize.getHeight();
 
-                // Canvas dimensions in pixels
-                const canvasWidth = canvas.width;
-                const canvasHeight = canvas.height;
+                // Define sections to capture
+                const sections = [
+                    { selector: '.hero', name: 'Hero' },
+                    { selector: '.about', name: 'About' },
+                    { selector: '.projects', name: 'Projects' },
+                    { selector: '.skills', name: 'Skills' },
+                    { selector: '.contact', name: 'Contact' }
+                ];
 
-                // Convert canvas to image data
-                const imgData = canvas.toDataURL('image/jpeg', 0.95);
+                let isFirstPage = true;
+                let currentYPosition = 10; // Start with 10mm margin
 
-                // Calculate how to fit width to PDF page
-                const imgWidth = pdfWidth;
-                const imgHeight = (canvasHeight * pdfWidth) / canvasWidth;
+                for (const section of sections) {
+                    const element = document.querySelector(section.selector);
+                    if (!element) continue;
 
-                // Add pages as needed
-                let heightLeft = imgHeight;
-                let position = 0;
+                    // Scroll element into view
+                    element.scrollIntoView({ behavior: 'instant', block: 'start' });
+                    await new Promise(resolve => setTimeout(resolve, 200));
 
-                // First page
-                pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight, undefined, 'FAST');
-                heightLeft -= pdfHeight;
+                    // Take screenshot of this section
+                    const canvas = await html2canvas(element, {
+                        scale: 2,
+                        useCORS: true,
+                        allowTaint: true,
+                        logging: false,
+                        backgroundColor: '#fafafa'
+                    });
 
-                // Add additional pages
-                while (heightLeft > 0) {
-                    position -= pdfHeight;
-                    pdf.addPage();
-                    pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight, undefined, 'FAST');
-                    heightLeft -= pdfHeight;
+                    const imgData = canvas.toDataURL('image/jpeg', 0.95);
+
+                    // Calculate dimensions
+                    const imgWidth = pdfWidth - 20; // 10mm margin on each side
+                    const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+                    // Check if we need a new page
+                    if (!isFirstPage && (currentYPosition + imgHeight > pdfHeight - 10)) {
+                        pdf.addPage();
+                        currentYPosition = 10;
+                    }
+
+                    // Add image to PDF
+                    pdf.addImage(imgData, 'JPEG', 10, currentYPosition, imgWidth, imgHeight);
+                    currentYPosition += imgHeight + 5; // Add 5mm spacing between sections
+
+                    // Check if this section spans multiple pages
+                    while (currentYPosition > pdfHeight - 10) {
+                        pdf.addPage();
+                        currentYPosition = 10;
+                    }
+
+                    isFirstPage = false;
                 }
 
                 // Save the PDF
@@ -1396,7 +1404,8 @@
                 console.error('Error generating PDF:', error);
                 alert('Det oppstod en feil ved generering av PDF. Vennligst prøv igjen.');
             } finally {
-                // Restore hidden elements
+                // Restore hidden elements and scroll to top
+                window.scrollTo(0, 0);
                 if (nav) nav.style.display = originalNavDisplay;
                 if (skipLink) skipLink.style.display = originalSkipDisplay;
                 if (heroCta) heroCta.style.display = originalCtaDisplay;
