@@ -1437,8 +1437,11 @@
                     });
 
                     const imgData = canvas.toDataURL('image/jpeg', 0.95);
-                    const imgWidth = pdfWidth - 20;
+
+                    // Use 80% width for project cards, centered
+                    const imgWidth = (pdfWidth - 20) * 0.8;
                     const imgHeight = (canvas.height * imgWidth) / canvas.width;
+                    const imgX = (pdfWidth - imgWidth) / 2; // Center horizontally
 
                     // Check if we need a new page
                     if (currentYPosition + imgHeight > pdfHeight - 10) {
@@ -1446,8 +1449,8 @@
                         currentYPosition = 10;
                     }
 
-                    pdf.addImage(imgData, 'JPEG', 10, currentYPosition, imgWidth, imgHeight);
-                    currentYPosition += imgHeight + 5;
+                    pdf.addImage(imgData, 'JPEG', imgX, currentYPosition, imgWidth, imgHeight);
+                    currentYPosition += imgHeight + 8; // Slightly more spacing for centered cards
                 }
 
                 // Capture skills and contact sections
