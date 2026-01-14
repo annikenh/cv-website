@@ -448,6 +448,38 @@
             font-weight: 600;
         }
 
+        /* PDF generation - smaller font sizes for project cards */
+        body.pdf-generation .project-title {
+            font-size: 1.2rem;
+        }
+
+        body.pdf-generation .project-subtitle {
+            font-size: 0.9rem;
+        }
+
+        body.pdf-generation .project-description {
+            font-size: 0.8rem;
+            line-height: 1.6;
+        }
+
+        body.pdf-generation .project-tag {
+            font-size: 0.7rem;
+            padding: 0.3rem 0.6rem;
+        }
+
+        body.pdf-generation .project-highlights h4 {
+            font-size: 0.75rem;
+        }
+
+        body.pdf-generation .project-highlights li {
+            font-size: 0.8rem;
+            padding: 0.2rem 0;
+        }
+
+        body.pdf-generation .project-company {
+            font-size: 0.75rem;
+        }
+
         /* Skills Section */
         .skills {
             background: var(--background-light);
@@ -1315,6 +1347,9 @@
             // Scroll to top first
             window.scrollTo(0, 0);
 
+            // Add PDF generation class to body for smaller font sizes
+            document.body.classList.add('pdf-generation');
+
             // Hide elements that shouldn't be in PDF
             const nav = document.querySelector('.nav');
             const skipLink = document.querySelector('.skip-link');
@@ -1333,7 +1368,7 @@
             const originalPadding = hero ? hero.style.paddingTop : '';
             if (hero) hero.style.paddingTop = '2rem';
 
-            // Wait a bit for layout to settle
+            // Wait a bit for layout to settle with new font sizes
             await new Promise(resolve => setTimeout(resolve, 500));
 
             try {
@@ -1496,6 +1531,7 @@
             } finally {
                 // Restore hidden elements and scroll to top
                 window.scrollTo(0, 0);
+                document.body.classList.remove('pdf-generation');
                 if (nav) nav.style.display = originalNavDisplay;
                 if (skipLink) skipLink.style.display = originalSkipDisplay;
                 if (heroCta) heroCta.style.display = originalCtaDisplay;
