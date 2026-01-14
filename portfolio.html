@@ -1453,18 +1453,50 @@
                     const imgWidth = pdfWidth - 20;
                     const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-                    // Check if card fits on current page (with bottom margin)
+                    // Check available space on current page
                     const remainingSpace = pdfHeight - pageMargin - currentYPosition;
 
-                    if (imgHeight > remainingSpace) {
-                        // Card doesn't fit - start new page
+                    if (imgHeight <= remainingSpace) {
+                        // Card fits on current page - add it here
+                        pdf.addImage(imgData, 'JPEG', 10, currentYPosition, imgWidth, imgHeight);
+                        currentYPosition += imgHeight + 5;
+                    } else if (imgHeight <= usablePageHeight) {
+                        // Card fits on a fresh page - start new page
                         pdf.addPage();
                         currentYPosition = pageMargin;
-                    }
+                        pdf.addImage(imgData, 'JPEG', 10, currentYPosition, imgWidth, imgHeight);
+                        currentYPosition += imgHeight + 5;
+                    } else {
+                        // Card is taller than one page - span multiple pages
+                        // Start on new page if not much space left
+                        if (remainingSpace < usablePageHeight * 0.3) {
+                            pdf.addPage();
+                            currentYPosition = pageMargin;
+                        }
 
-                    // Add image to PDF
-                    pdf.addImage(imgData, 'JPEG', 10, currentYPosition, imgWidth, imgHeight);
-                    currentYPosition += imgHeight + 5;
+                        let yOffset = 0; // How much of image we've "scrolled" past
+
+                        while (yOffset < imgHeight) {
+                            const spaceOnThisPage = (yOffset === 0)
+                                ? (pdfHeight - pageMargin - currentYPosition)
+                                : usablePageHeight;
+
+                            // Add image positioned so the correct portion shows
+                            pdf.addImage(imgData, 'JPEG', 10, currentYPosition - yOffset, imgWidth, imgHeight);
+
+                            yOffset += spaceOnThisPage;
+
+                            if (yOffset < imgHeight) {
+                                // More content to show - add new page
+                                pdf.addPage();
+                                currentYPosition = pageMargin;
+                            } else {
+                                // Done - calculate final position
+                                const lastPortionHeight = imgHeight - (yOffset - spaceOnThisPage);
+                                currentYPosition = pageMargin + lastPortionHeight + 5;
+                            }
+                        }
+                    }
                 }
 
                 // Capture skills and contact sections
