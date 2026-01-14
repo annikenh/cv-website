@@ -369,7 +369,7 @@
         }
 
         .project-company {
-            font-size: 0.875rem;
+            font-size: 12pt;
             opacity: 0.9;
             margin-bottom: 0.5rem;
             text-transform: uppercase;
@@ -377,7 +377,7 @@
         }
 
         .project-title {
-            font-size: 1.25rem;
+            font-size: 12pt;
             font-weight: 700;
             margin-bottom: 1rem;
         }
@@ -385,7 +385,7 @@
         .project-subtitle {
             opacity: 0.9;
             line-height: 1.6;
-            font-size: 1rem;
+            font-size: 12pt;
         }
 
         .project-content {
@@ -396,7 +396,7 @@
             color: var(--text-light);
             line-height: 1.7;
             margin-bottom: 1.5rem;
-            font-size: 1rem;
+            font-size: 12pt;
         }
 
         .project-tags {
@@ -411,7 +411,7 @@
             background: var(--background-light);
             color: var(--text-dark);
             border: 1px solid var(--border-color);
-            font-size: 0.75rem;
+            font-size: 12pt;
             font-weight: 500;
         }
 
@@ -425,7 +425,7 @@
         .project-highlights h4 {
             color: var(--primary-color);
             margin-bottom: 0.75rem;
-            font-size: 0.875rem;
+            font-size: 12pt;
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
@@ -438,30 +438,22 @@
         .project-highlights li {
             padding: 0.25rem 0;
             color: var(--text-light);
-            font-size: 0.875rem;
+            font-size: 12pt;
         }
 
         .project-highlights li::marker {
             color: var(--accent-color);
         }
 
-        /* PDF generation - consistent font sizes matching web */
-        body.pdf-generation .project-company {
-            font-size: 0.875rem !important;
-        }
-        body.pdf-generation .project-title {
-            font-size: 1.25rem !important;
-        }
+        /* PDF generation - consistent 12pt font size */
+        body.pdf-generation .project-company,
+        body.pdf-generation .project-title,
         body.pdf-generation .project-subtitle,
-        body.pdf-generation .project-description {
-            font-size: 1rem !important;
-        }
-        body.pdf-generation .project-tag {
-            font-size: 0.75rem !important;
-        }
+        body.pdf-generation .project-description,
+        body.pdf-generation .project-tag,
         body.pdf-generation .project-highlights h4,
         body.pdf-generation .project-highlights li {
-            font-size: 0.875rem !important;
+            font-size: 12pt !important;
         }
 
         /* Skills Section */
