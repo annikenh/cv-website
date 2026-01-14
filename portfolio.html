@@ -1361,7 +1361,8 @@
                 ];
 
                 let isFirstPage = true;
-                let currentYPosition = 10; // Start with 10mm margin
+                const pageMargin = 20; // 20mm margin top and bottom at page breaks
+                let currentYPosition = pageMargin;
 
                 // Capture hero and about sections
                 for (const section of sections) {
@@ -1388,9 +1389,9 @@
                     const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
                     // Check if we need a new page
-                    if (!isFirstPage && (currentYPosition + imgHeight > pdfHeight - 10)) {
+                    if (!isFirstPage && (currentYPosition + imgHeight > pdfHeight - pageMargin)) {
                         pdf.addPage();
-                        currentYPosition = 10;
+                        currentYPosition = pageMargin;
                     }
 
                     // Add image to PDF
@@ -1398,9 +1399,9 @@
                     currentYPosition += imgHeight + 5; // Add 5mm spacing between sections
 
                     // Check if this section spans multiple pages
-                    while (currentYPosition > pdfHeight - 10) {
+                    while (currentYPosition > pdfHeight - pageMargin) {
                         pdf.addPage();
-                        currentYPosition = 10;
+                        currentYPosition = pageMargin;
                     }
 
                     isFirstPage = false;
@@ -1424,9 +1425,9 @@
                     const imgWidth = pdfWidth - 20;
                     const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-                    if (currentYPosition + imgHeight > pdfHeight - 10) {
+                    if (currentYPosition + imgHeight > pdfHeight - pageMargin) {
                         pdf.addPage();
-                        currentYPosition = 10;
+                        currentYPosition = pageMargin;
                     }
 
                     pdf.addImage(imgData, 'JPEG', 10, currentYPosition, imgWidth, imgHeight);
@@ -1466,10 +1467,10 @@
                         heightLeft -= pdfHeight;
                     }
 
-                    currentYPosition = (pdfHeight - Math.abs(position)) + 10;
+                    currentYPosition = (pdfHeight - Math.abs(position)) + pageMargin;
                     if (currentYPosition > pdfHeight - 50) {
                         pdf.addPage();
-                        currentYPosition = 10;
+                        currentYPosition = pageMargin;
                     }
                 }
 
@@ -1498,9 +1499,9 @@
                     const imgWidth = pdfWidth - 20;
                     const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-                    if (currentYPosition + imgHeight > pdfHeight - 10) {
+                    if (currentYPosition + imgHeight > pdfHeight - pageMargin) {
                         pdf.addPage();
-                        currentYPosition = 10;
+                        currentYPosition = pageMargin;
                     }
 
                     pdf.addImage(imgData, 'JPEG', 10, currentYPosition, imgWidth, imgHeight);
