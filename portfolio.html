@@ -429,25 +429,17 @@
         }
 
         .project-highlights ul {
-            list-style: none;
-            padding: 0;
+            list-style: disc;
+            padding-left: 1.5rem;
         }
 
         .project-highlights li {
             padding: 0.25rem 0;
             color: var(--text-light);
-            position: relative;
-            padding-left: 2rem;
-            min-height: 1.5rem;
         }
 
-        .project-highlights li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            top: 0.25rem;
+        .project-highlights li::marker {
             color: var(--accent-color);
-            font-weight: 600;
         }
 
         /* PDF generation - smaller font sizes for project cards */
