@@ -1449,18 +1449,27 @@
 
                     const imgData = canvas.toDataURL('image/jpeg', 0.95);
 
-                    // Use full page width for project cards
-                    let imgWidth = pdfWidth;
-                    let imgHeight = (canvas.height * imgWidth) / canvas.width;
+                    // Scale to fit PDF page width with margins
+                    const imgWidth = pdfWidth - 20; // 10mm margin on each side
+                    const imgHeight = (canvas.height * imgWidth) / canvas.width;
+                    const imgX = 10; // Left margin
 
-                    // If image is taller than one page, scale it down to fit
-                    const maxHeight = pdfHeight - 20; // Max height with margins
-                    if (imgHeight > maxHeight) {
-                        imgHeight = maxHeight;
-                        imgWidth = (canvas.width * imgHeight) / canvas.height;
+                    // Check if too tall for one page
+                    if (imgHeight > pdfHeight - 30) {
+                        // If it doesn't fit, scale down proportionally
+                        const scaledHeight = pdfHeight - 30;
+                        const scaledWidth = (canvas.width * scaledHeight) / canvas.height;
+                        const scaledX = (pdfWidth - scaledWidth) / 2;
+
+                        if (currentYPosition + scaledHeight > pdfHeight - 20) {
+                            pdf.addPage();
+                            currentYPosition = 10;
+                        }
+
+                        pdf.addImage(imgData, 'JPEG', scaledX, currentYPosition, scaledWidth, scaledHeight);
+                        currentYPosition += scaledHeight + 8;
+                        continue;
                     }
-
-                    const imgX = 0; // No margin, full width
 
                     // If project card won't fit completely on current page, start new page
                     // This prevents cutting project cards in the middle
