@@ -445,21 +445,15 @@
             color: var(--accent-color);
         }
 
-        /* PDF generation - larger font sizes to compensate for scaling */
-        body.pdf-generation .project-title {
-            font-size: 2rem;
-        }
-
+        /* PDF generation - consistent 1.2rem font size */
+        body.pdf-generation .project-title,
         body.pdf-generation .project-subtitle,
         body.pdf-generation .project-description,
+        body.pdf-generation .project-tag,
+        body.pdf-generation .project-highlights h4,
         body.pdf-generation .project-highlights li,
         body.pdf-generation .project-company {
-            font-size: 1.8rem;
-        }
-
-        body.pdf-generation .project-tag,
-        body.pdf-generation .project-highlights h4 {
-            font-size: 1.6rem;
+            font-size: 1.2rem !important;
         }
 
         /* Skills Section */
@@ -1455,8 +1449,8 @@
 
                     const imgData = canvas.toDataURL('image/jpeg', 0.95);
 
-                    // Use 80% width for project cards, centered
-                    let imgWidth = (pdfWidth - 20) * 0.8;
+                    // Use full width for project cards with margins
+                    let imgWidth = pdfWidth - 20;
                     let imgHeight = (canvas.height * imgWidth) / canvas.width;
 
                     // If image is taller than one page, scale it down to fit
@@ -1466,7 +1460,7 @@
                         imgWidth = (canvas.width * imgHeight) / canvas.height;
                     }
 
-                    const imgX = (pdfWidth - imgWidth) / 2; // Center horizontally
+                    const imgX = 10; // Start at left margin
 
                     // If project card won't fit completely on current page, start new page
                     // This prevents cutting project cards in the middle
