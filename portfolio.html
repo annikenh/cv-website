@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
     <style>
         :root {
@@ -782,6 +783,10 @@
                             <i class="fas fa-file-alt"></i>
                             Se CV
                         </a>
+                        <a href="#" class="btn btn-secondary" onclick="downloadPortfolio(event)">
+                            <i class="fas fa-download"></i>
+                            Last ned portfolio
+                        </a>
                         <a href="#contact" class="btn btn-secondary">
                             <i class="fas fa-envelope"></i>
                             Ta kontakt
@@ -1301,6 +1306,59 @@
         animationElements.forEach(el => {
             animationObserver.observe(el);
         });
+
+        // Download Portfolio as PDF
+        function downloadPortfolio(event) {
+            event.preventDefault();
+
+            // Hide navigation and download button temporarily for PDF
+            const nav = document.querySelector('.nav');
+            const skipLink = document.querySelector('.skip-link');
+            const downloadBtn = event.target.closest('.btn');
+
+            if (nav) nav.style.display = 'none';
+            if (skipLink) skipLink.style.display = 'none';
+            if (downloadBtn) downloadBtn.style.display = 'none';
+
+            // Adjust hero padding for better PDF layout
+            const hero = document.querySelector('.hero');
+            const originalPadding = hero ? hero.style.paddingTop : '';
+            if (hero) hero.style.paddingTop = '2rem';
+
+            const element = document.body;
+
+            const opt = {
+                margin: [10, 10, 10, 10],
+                filename: 'Anniken Hogstad - Portfolio.pdf',
+                image: { type: 'jpeg', quality: 0.95 },
+                html2canvas: {
+                    scale: 1.5,
+                    useCORS: true,
+                    letterRendering: true,
+                    logging: false,
+                    scrollY: 0,
+                    scrollX: 0
+                },
+                jsPDF: {
+                    unit: 'mm',
+                    format: 'a4',
+                    orientation: 'portrait',
+                    compress: true
+                },
+                pagebreak: {
+                    mode: ['css', 'legacy'],
+                    avoid: ['.project-card', '.skill-category']
+                }
+            };
+
+            html2pdf().set(opt).from(element).save().then(() => {
+                // Restore hidden elements
+                if (nav) nav.style.display = '';
+                if (skipLink) skipLink.style.display = '';
+                if (downloadBtn) downloadBtn.style.display = '';
+                if (hero) hero.style.paddingTop = originalPadding;
+            });
+        }
     </script>
 </body>
 </html>
