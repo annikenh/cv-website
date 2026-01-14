@@ -1388,8 +1388,11 @@
                     const imgWidth = pdfWidth - 20; // 10mm margin on each side
                     const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-                    // Check if we need a new page
-                    if (!isFirstPage && (currentYPosition + imgHeight > pdfHeight - pageMargin)) {
+                    // Check if content fits on current page (with bottom margin)
+                    const remainingSpace = pdfHeight - pageMargin - currentYPosition;
+
+                    if (!isFirstPage && imgHeight > remainingSpace) {
+                        // Content doesn't fit - start new page
                         pdf.addPage();
                         currentYPosition = pageMargin;
                     }
@@ -1397,12 +1400,6 @@
                     // Add image to PDF
                     pdf.addImage(imgData, 'JPEG', 10, currentYPosition, imgWidth, imgHeight);
                     currentYPosition += imgHeight + 5; // Add 5mm spacing between sections
-
-                    // Check if this section spans multiple pages
-                    while (currentYPosition > pdfHeight - pageMargin) {
-                        pdf.addPage();
-                        currentYPosition = pageMargin;
-                    }
 
                     isFirstPage = false;
                 }
@@ -1425,7 +1422,9 @@
                     const imgWidth = pdfWidth - 20;
                     const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-                    if (currentYPosition + imgHeight > pdfHeight - pageMargin) {
+                    // Check if content fits on current page
+                    const remainingSpace = pdfHeight - pageMargin - currentYPosition;
+                    if (imgHeight > remainingSpace) {
                         pdf.addPage();
                         currentYPosition = pageMargin;
                     }
@@ -1436,6 +1435,8 @@
 
                 // Capture each project card individually
                 const projectCards = document.querySelectorAll('.project-card');
+                const usablePageHeight = pdfHeight - (2 * pageMargin); // Available height per page
+
                 for (const card of projectCards) {
                     card.scrollIntoView({ behavior: 'instant', block: 'center' });
                     await new Promise(resolve => setTimeout(resolve, 300));
@@ -1452,26 +1453,18 @@
                     const imgWidth = pdfWidth - 20;
                     const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-                    let heightLeft = imgHeight;
-                    let position = currentYPosition;
+                    // Check if card fits on current page (with bottom margin)
+                    const remainingSpace = pdfHeight - pageMargin - currentYPosition;
 
-                    // Add first part of image
-                    pdf.addImage(imgData, 'JPEG', 10, position, imgWidth, imgHeight);
-                    heightLeft -= (pdfHeight - position);
-
-                    // Add additional pages if needed
-                    while (heightLeft > 0) {
-                        position = heightLeft - imgHeight;
-                        pdf.addPage();
-                        pdf.addImage(imgData, 'JPEG', 10, position, imgWidth, imgHeight);
-                        heightLeft -= pdfHeight;
-                    }
-
-                    currentYPosition = (pdfHeight - Math.abs(position)) + pageMargin;
-                    if (currentYPosition > pdfHeight - 50) {
+                    if (imgHeight > remainingSpace) {
+                        // Card doesn't fit - start new page
                         pdf.addPage();
                         currentYPosition = pageMargin;
                     }
+
+                    // Add image to PDF
+                    pdf.addImage(imgData, 'JPEG', 10, currentYPosition, imgWidth, imgHeight);
+                    currentYPosition += imgHeight + 5;
                 }
 
                 // Capture skills and contact sections
@@ -1499,7 +1492,9 @@
                     const imgWidth = pdfWidth - 20;
                     const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-                    if (currentYPosition + imgHeight > pdfHeight - pageMargin) {
+                    // Check if content fits on current page
+                    const remainingSpace = pdfHeight - pageMargin - currentYPosition;
+                    if (imgHeight > remainingSpace) {
                         pdf.addPage();
                         currentYPosition = pageMargin;
                     }
