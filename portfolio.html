@@ -1440,48 +1440,37 @@
                     await new Promise(resolve => setTimeout(resolve, 300));
 
                     const canvas = await html2canvas(card, {
-                        scale: 3,
+                        scale: 2,
                         useCORS: true,
                         allowTaint: true,
                         logging: false,
-                        backgroundColor: '#ffffff',
-                        width: 1200
+                        backgroundColor: '#ffffff'
                     });
 
                     const imgData = canvas.toDataURL('image/jpeg', 0.95);
-
-                    // Scale to fit PDF page width with margins
-                    const imgWidth = pdfWidth - 20; // 10mm margin on each side
+                    const imgWidth = pdfWidth - 20;
                     const imgHeight = (canvas.height * imgWidth) / canvas.width;
-                    const imgX = 10; // Left margin
 
-                    // Check if too tall for one page
-                    if (imgHeight > pdfHeight - 30) {
-                        // If it doesn't fit, scale down proportionally
-                        const scaledHeight = pdfHeight - 30;
-                        const scaledWidth = (canvas.width * scaledHeight) / canvas.height;
-                        const scaledX = (pdfWidth - scaledWidth) / 2;
+                    let heightLeft = imgHeight;
+                    let position = currentYPosition;
 
-                        if (currentYPosition + scaledHeight > pdfHeight - 20) {
-                            pdf.addPage();
-                            currentYPosition = 10;
-                        }
+                    // Add first part of image
+                    pdf.addImage(imgData, 'JPEG', 10, position, imgWidth, imgHeight);
+                    heightLeft -= (pdfHeight - position);
 
-                        pdf.addImage(imgData, 'JPEG', scaledX, currentYPosition, scaledWidth, scaledHeight);
-                        currentYPosition += scaledHeight + 8;
-                        continue;
+                    // Add additional pages if needed
+                    while (heightLeft > 0) {
+                        position = heightLeft - imgHeight;
+                        pdf.addPage();
+                        pdf.addImage(imgData, 'JPEG', 10, position, imgWidth, imgHeight);
+                        heightLeft -= pdfHeight;
                     }
 
-                    // If project card won't fit completely on current page, start new page
-                    // This prevents cutting project cards in the middle
-                    // Using conservative margin (20mm) to ensure no cutting
-                    if (currentYPosition + imgHeight > pdfHeight - 20) {
+                    currentYPosition = (pdfHeight - Math.abs(position)) + 10;
+                    if (currentYPosition > pdfHeight - 50) {
                         pdf.addPage();
                         currentYPosition = 10;
                     }
-
-                    pdf.addImage(imgData, 'JPEG', imgX, currentYPosition, imgWidth, imgHeight);
-                    currentYPosition += imgHeight + 8; // Slightly more spacing for centered cards
                 }
 
                 // Capture skills and contact sections
