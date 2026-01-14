@@ -11,7 +11,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
     <style>
         :root {
@@ -1308,14 +1309,17 @@
         });
 
         // Download Portfolio as PDF
-        function downloadPortfolio(event) {
+        async function downloadPortfolio(event) {
             event.preventDefault();
 
             // Hide elements that shouldn't be in PDF
             const nav = document.querySelector('.nav');
             const skipLink = document.querySelector('.skip-link');
             const heroCta = document.querySelector('.hero-cta');
-            const footer = document.querySelector('.footer');
+
+            const originalNavDisplay = nav ? nav.style.display : '';
+            const originalSkipDisplay = skipLink ? skipLink.style.display : '';
+            const originalCtaDisplay = heroCta ? heroCta.style.display : '';
 
             if (nav) nav.style.display = 'none';
             if (skipLink) skipLink.style.display = 'none';
@@ -1326,40 +1330,57 @@
             const originalPadding = hero ? hero.style.paddingTop : '';
             if (hero) hero.style.paddingTop = '2rem';
 
-            // Get main content to convert
-            const element = document.getElementById('main-content');
+            try {
+                // Get main content to convert
+                const element = document.getElementById('main-content');
 
-            const opt = {
-                margin: [10, 10, 10, 10],
-                filename: 'Anniken Hogstad - Portfolio.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: {
+                // Take screenshot of the entire page
+                const canvas = await html2canvas(element, {
                     scale: 2,
                     useCORS: true,
-                    letterRendering: true,
                     logging: false,
+                    windowWidth: element.scrollWidth,
                     windowHeight: element.scrollHeight,
-                    height: element.scrollHeight
-                },
-                jsPDF: {
-                    unit: 'mm',
-                    format: 'a4',
-                    orientation: 'portrait',
-                    compress: true
-                },
-                pagebreak: {
-                    mode: ['avoid-all', 'css', 'legacy'],
-                    avoid: ['.project-card', '.skill-category', '.about-content']
-                }
-            };
+                    scrollY: -window.scrollY,
+                    scrollX: -window.scrollX
+                });
 
-            html2pdf().set(opt).from(element).save().then(() => {
+                // Calculate dimensions for PDF
+                const imgWidth = 210; // A4 width in mm
+                const pageHeight = 297; // A4 height in mm
+                const imgHeight = (canvas.height * imgWidth) / canvas.width;
+                let heightLeft = imgHeight;
+                let position = 0;
+
+                // Create PDF
+                const { jsPDF } = window.jspdf;
+                const pdf = new jsPDF('p', 'mm', 'a4');
+
+                // Add image to PDF, splitting into multiple pages if needed
+                const imgData = canvas.toDataURL('image/jpeg', 0.95);
+                pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+                heightLeft -= pageHeight;
+
+                while (heightLeft > 0) {
+                    position = heightLeft - imgHeight;
+                    pdf.addPage();
+                    pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+                    heightLeft -= pageHeight;
+                }
+
+                // Save the PDF
+                pdf.save('Anniken Hogstad - Portfolio.pdf');
+
+            } catch (error) {
+                console.error('Error generating PDF:', error);
+                alert('Det oppstod en feil ved generering av PDF. Vennligst prøv igjen.');
+            } finally {
                 // Restore hidden elements
-                if (nav) nav.style.display = '';
-                if (skipLink) skipLink.style.display = '';
-                if (heroCta) heroCta.style.display = '';
+                if (nav) nav.style.display = originalNavDisplay;
+                if (skipLink) skipLink.style.display = originalSkipDisplay;
+                if (heroCta) heroCta.style.display = originalCtaDisplay;
                 if (hero) hero.style.paddingTop = originalPadding;
-            });
+            }
         }
     </script>
 </body>
