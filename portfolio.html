@@ -1311,33 +1311,35 @@
         function downloadPortfolio(event) {
             event.preventDefault();
 
-            // Hide navigation and download button temporarily for PDF
+            // Hide elements that shouldn't be in PDF
             const nav = document.querySelector('.nav');
             const skipLink = document.querySelector('.skip-link');
-            const downloadBtn = event.target.closest('.btn');
+            const heroCta = document.querySelector('.hero-cta');
+            const footer = document.querySelector('.footer');
 
             if (nav) nav.style.display = 'none';
             if (skipLink) skipLink.style.display = 'none';
-            if (downloadBtn) downloadBtn.style.display = 'none';
+            if (heroCta) heroCta.style.display = 'none';
 
             // Adjust hero padding for better PDF layout
             const hero = document.querySelector('.hero');
             const originalPadding = hero ? hero.style.paddingTop : '';
             if (hero) hero.style.paddingTop = '2rem';
 
-            const element = document.body;
+            // Get main content to convert
+            const element = document.getElementById('main-content');
 
             const opt = {
                 margin: [10, 10, 10, 10],
                 filename: 'Anniken Hogstad - Portfolio.pdf',
-                image: { type: 'jpeg', quality: 0.95 },
+                image: { type: 'jpeg', quality: 0.98 },
                 html2canvas: {
-                    scale: 1.5,
+                    scale: 2,
                     useCORS: true,
                     letterRendering: true,
                     logging: false,
-                    scrollY: 0,
-                    scrollX: 0
+                    windowHeight: element.scrollHeight,
+                    height: element.scrollHeight
                 },
                 jsPDF: {
                     unit: 'mm',
@@ -1346,8 +1348,8 @@
                     compress: true
                 },
                 pagebreak: {
-                    mode: ['css', 'legacy'],
-                    avoid: ['.project-card', '.skill-category']
+                    mode: ['avoid-all', 'css', 'legacy'],
+                    avoid: ['.project-card', '.skill-category', '.about-content']
                 }
             };
 
@@ -1355,7 +1357,7 @@
                 // Restore hidden elements
                 if (nav) nav.style.display = '';
                 if (skipLink) skipLink.style.display = '';
-                if (downloadBtn) downloadBtn.style.display = '';
+                if (heroCta) heroCta.style.display = '';
                 if (hero) hero.style.paddingTop = originalPadding;
             });
         }
