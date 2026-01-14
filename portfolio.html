@@ -1440,11 +1440,12 @@
                     await new Promise(resolve => setTimeout(resolve, 300));
 
                     const canvas = await html2canvas(card, {
-                        scale: 2,
+                        scale: 3,
                         useCORS: true,
                         allowTaint: true,
                         logging: false,
-                        backgroundColor: '#ffffff'
+                        backgroundColor: '#ffffff',
+                        width: 1200
                     });
 
                     const imgData = canvas.toDataURL('image/jpeg', 0.95);
