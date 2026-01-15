@@ -369,7 +369,7 @@
         }
 
         .project-company {
-            font-size: 12pt;
+            font-size: 14pt;
             opacity: 0.9;
             margin-bottom: 0.5rem;
             text-transform: uppercase;
@@ -377,7 +377,7 @@
         }
 
         .project-title {
-            font-size: 12pt;
+            font-size: 14pt;
             font-weight: 700;
             margin-bottom: 1rem;
         }
@@ -385,7 +385,7 @@
         .project-subtitle {
             opacity: 0.9;
             line-height: 1.6;
-            font-size: 12pt;
+            font-size: 14pt;
         }
 
         .project-content {
@@ -396,7 +396,7 @@
             color: var(--text-light);
             line-height: 1.7;
             margin-bottom: 1.5rem;
-            font-size: 12pt;
+            font-size: 14pt;
         }
 
         .project-tags {
@@ -411,7 +411,7 @@
             background: var(--background-light);
             color: var(--text-dark);
             border: 1px solid var(--border-color);
-            font-size: 12pt;
+            font-size: 14pt;
             font-weight: 500;
         }
 
@@ -425,7 +425,7 @@
         .project-highlights h4 {
             color: var(--primary-color);
             margin-bottom: 0.75rem;
-            font-size: 12pt;
+            font-size: 14pt;
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
@@ -438,44 +438,22 @@
         .project-highlights li {
             padding: 0.25rem 0;
             color: var(--text-light);
-            font-size: 12pt;
+            font-size: 14pt;
         }
 
         .project-highlights li::marker {
             color: var(--accent-color);
         }
 
-        /* PDF generation - adjusted font sizes */
-        body.pdf-generation .hero-content h1 {
-            font-size: 28pt !important;
-        }
-        body.pdf-generation .hero-content .subtitle {
-            font-size: 14pt !important;
-        }
-        body.pdf-generation .hero-content .description {
-            font-size: 11pt !important;
-        }
-        body.pdf-generation .about-text {
-            font-size: 11pt !important;
-        }
-        body.pdf-generation .section-title {
-            font-size: 18pt !important;
-        }
-        body.pdf-generation .section-subtitle {
-            font-size: 11pt !important;
-        }
+        /* PDF generation - 12pt on everything */
         body.pdf-generation .project-company,
+        body.pdf-generation .project-title,
         body.pdf-generation .project-subtitle,
         body.pdf-generation .project-description,
+        body.pdf-generation .project-tag,
         body.pdf-generation .project-highlights h4,
         body.pdf-generation .project-highlights li {
-            font-size: 9pt !important;
-        }
-        body.pdf-generation .project-title {
-            font-size: 11pt !important;
-        }
-        body.pdf-generation .project-tag {
-            font-size: 8pt !important;
+            font-size: 12pt !important;
         }
 
         /* Skills Section */
