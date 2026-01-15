@@ -369,7 +369,7 @@
         }
 
         .project-company {
-            font-size: 12pt;
+            font-size: 9pt;
             opacity: 0.9;
             margin-bottom: 0.5rem;
             text-transform: uppercase;
@@ -377,7 +377,7 @@
         }
 
         .project-title {
-            font-size: 12pt;
+            font-size: 11pt;
             font-weight: 700;
             margin-bottom: 1rem;
         }
@@ -385,7 +385,7 @@
         .project-subtitle {
             opacity: 0.9;
             line-height: 1.6;
-            font-size: 12pt;
+            font-size: 9pt;
         }
 
         .project-content {
@@ -396,7 +396,7 @@
             color: var(--text-light);
             line-height: 1.7;
             margin-bottom: 1.5rem;
-            font-size: 12pt;
+            font-size: 9pt;
         }
 
         .project-tags {
@@ -411,7 +411,7 @@
             background: var(--background-light);
             color: var(--text-dark);
             border: 1px solid var(--border-color);
-            font-size: 12pt;
+            font-size: 8pt;
             font-weight: 500;
         }
 
@@ -425,7 +425,7 @@
         .project-highlights h4 {
             color: var(--primary-color);
             margin-bottom: 0.75rem;
-            font-size: 12pt;
+            font-size: 9pt;
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
@@ -438,22 +438,26 @@
         .project-highlights li {
             padding: 0.25rem 0;
             color: var(--text-light);
-            font-size: 12pt;
+            font-size: 9pt;
         }
 
         .project-highlights li::marker {
             color: var(--accent-color);
         }
 
-        /* PDF generation - consistent 12pt font size */
+        /* PDF generation - consistent smaller font sizes */
         body.pdf-generation .project-company,
-        body.pdf-generation .project-title,
         body.pdf-generation .project-subtitle,
         body.pdf-generation .project-description,
-        body.pdf-generation .project-tag,
         body.pdf-generation .project-highlights h4,
         body.pdf-generation .project-highlights li {
-            font-size: 12pt !important;
+            font-size: 9pt !important;
+        }
+        body.pdf-generation .project-title {
+            font-size: 11pt !important;
+        }
+        body.pdf-generation .project-tag {
+            font-size: 8pt !important;
         }
 
         /* Skills Section */
@@ -1435,7 +1439,6 @@
 
                 // Capture each project card individually
                 const projectCards = document.querySelectorAll('.project-card');
-                const usablePageHeight = pdfHeight - (2 * pageMargin); // Available height per page
 
                 for (const card of projectCards) {
                     card.scrollIntoView({ behavior: 'instant', block: 'center' });
@@ -1456,46 +1459,20 @@
                     // Check available space on current page
                     const remainingSpace = pdfHeight - pageMargin - currentYPosition;
 
-                    if (imgHeight <= remainingSpace) {
-                        // Card fits on current page - add it here
-                        pdf.addImage(imgData, 'JPEG', 10, currentYPosition, imgWidth, imgHeight);
-                        currentYPosition += imgHeight + 5;
-                    } else if (imgHeight <= usablePageHeight) {
-                        // Card fits on a fresh page - start new page
+                    // If card doesn't fit, start new page
+                    if (imgHeight > remainingSpace) {
                         pdf.addPage();
                         currentYPosition = pageMargin;
-                        pdf.addImage(imgData, 'JPEG', 10, currentYPosition, imgWidth, imgHeight);
-                        currentYPosition += imgHeight + 5;
-                    } else {
-                        // Card is taller than one page - span multiple pages
-                        // Start on new page if not much space left
-                        if (remainingSpace < usablePageHeight * 0.3) {
-                            pdf.addPage();
-                            currentYPosition = pageMargin;
-                        }
+                    }
 
-                        let yOffset = 0; // How much of image we've "scrolled" past
+                    // Add card to PDF
+                    pdf.addImage(imgData, 'JPEG', 10, currentYPosition, imgWidth, imgHeight);
+                    currentYPosition += imgHeight + 5;
 
-                        while (yOffset < imgHeight) {
-                            const spaceOnThisPage = (yOffset === 0)
-                                ? (pdfHeight - pageMargin - currentYPosition)
-                                : usablePageHeight;
-
-                            // Add image positioned so the correct portion shows
-                            pdf.addImage(imgData, 'JPEG', 10, currentYPosition - yOffset, imgWidth, imgHeight);
-
-                            yOffset += spaceOnThisPage;
-
-                            if (yOffset < imgHeight) {
-                                // More content to show - add new page
-                                pdf.addPage();
-                                currentYPosition = pageMargin;
-                            } else {
-                                // Done - calculate final position
-                                const lastPortionHeight = imgHeight - (yOffset - spaceOnThisPage);
-                                currentYPosition = pageMargin + lastPortionHeight + 5;
-                            }
-                        }
+                    // If we've gone past the page, start fresh on next iteration
+                    if (currentYPosition > pdfHeight - pageMargin) {
+                        pdf.addPage();
+                        currentYPosition = pageMargin;
                     }
                 }
 
