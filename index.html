@@ -612,7 +612,8 @@
                 <div class="contact-links">
                     <a href="mailto:annikenh@proton.me" class="contact-link"><i class="fas fa-envelope"></i> E-post</a>
                     <a href="portfolio.html" class="contact-link"><i class="fas fa-briefcase"></i> Portfolio</a>
-                    <a href="#" class="contact-link" onclick="downloadCV(event)"><i class="fas fa-download"></i> Last ned CV</a>
+                    <a href="#" class="contact-link" onclick="downloadCV(event)"><i class="fas fa-download"></i> Last ned CV (PDF)</a>
+                    <a href="#" class="contact-link" onclick="downloadCVDoc(event)"><i class="fas fa-file-word"></i> Last ned CV (Word)</a>
                 </div>
             </div>
         </header>
@@ -993,6 +994,38 @@
                 if (skipLink) skipLink.style.display = '';
                 if (contactLinks) contactLinks.style.display = '';
             });
+        }
+
+        // Download CV as Word .doc
+        function downloadCVDoc(event) {
+            event.preventDefault();
+
+            const element = document.querySelector('.container');
+
+            // Get computed styles to inline into the doc
+            const styles = document.querySelector('style').innerHTML;
+
+            const html = `
+                <html xmlns:o="urn:schemas-microsoft-com:office:office"
+                      xmlns:w="urn:schemas-microsoft-com:office:word"
+                      xmlns="http://www.w3.org/TR/REC-html40">
+                <head>
+                    <meta charset="UTF-8">
+                    <style>${styles}</style>
+                </head>
+                <body>${element.innerHTML}</body>
+                </html>
+            `;
+
+            const blob = new Blob([html], { type: 'application/msword' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Anniken Hogstad - CV.doc';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
         }
 
         document.addEventListener('DOMContentLoaded', function() {
