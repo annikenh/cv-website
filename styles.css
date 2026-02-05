@@ -6,10 +6,10 @@
 }
 
 :root {
-    --primary-color: #16a34a;
-    --primary-dark: #15803d;
-    --secondary-color: #059669;
-    --accent-color: #4ade80;
+    --primary-color: #4a6741;
+    --primary-dark: #374f2f;
+    --secondary-color: #3f5a36;
+    --accent-color: #304529;
     --text-primary: #1e293b;
     --text-secondary: #64748b;
     --text-light: #94a3b8;
@@ -21,8 +21,8 @@
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
     --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-    --gradient-primary: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
-    --gradient-secondary: linear-gradient(135deg, #059669 0%, #047857 100%);
+    --gradient-primary: linear-gradient(135deg, #4a6741 0%, #374f2f 100%);
+    --gradient-secondary: linear-gradient(135deg, #3f5a36 0%, #304529 100%);
 }
 
 body {
@@ -656,7 +656,7 @@ body {
 .form-group textarea:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
+    box-shadow: 0 0 0 3px rgba(74, 103, 65, 0.15);
 }
 
 .form-group textarea {

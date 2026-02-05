@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function() {
             position: fixed;
             top: 20px;
             right: 20px;
-            background: ${type === 'success' ? '#059669' : type === 'error' ? '#ef4444' : '#16a34a'};
+            background: ${type === 'success' ? '#4a6741' : type === 'error' ? '#ef4444' : '#3f5a36'};
             color: white;
             padding: 1rem 1.5rem;
             border-radius: 0.5rem;
