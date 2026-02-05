@@ -537,62 +537,21 @@
 
         /* Print styles for PDF generation */
         @media print {
-            .skip-link {
-                display: none;
-            }
-
+            .skip-link,
             .contact-links {
                 display: none;
             }
 
-            /* Page breaks only after complete paragraphs */
-            p,
-            .job-description,
-            .experience-item {
+            * {
                 page-break-inside: avoid;
+                break-inside: avoid;
             }
 
-            /* Sidebar items can break naturally */
-            .education-item,
-            .certification-item,
-            .position-item,
-            .contact-item,
-            .language-item {
-                page-break-inside: auto;
-            }
-
-            .section-title {
-                page-break-after: avoid;
-            }
-
-            .job-header {
-                page-break-after: avoid;
-            }
-
+            .section-title,
+            .job-header,
             h1, h2, h3, h4, h5, h6 {
                 page-break-after: avoid;
-            }
-
-            ul, ol {
-                page-break-inside: avoid;
-            }
-
-            /* Left column (sidebar) page breaks */
-            #education-section {
-                page-break-after: always !important;
-            }
-
-            #contact-section {
-                page-break-before: always !important;
-            }
-
-            #positions-section {
-                page-break-before: always !important;
-            }
-
-            /* Allow sections in sidebar to break naturally */
-            .sidebar .section {
-                page-break-inside: auto;
+                break-after: avoid;
             }
         }
     </style>
@@ -956,7 +915,7 @@
     </div>
 
     <script>
-        // Download CV as PDF with controlled page breaks
+        // Download CV as PDF without page breaks
         function downloadCV(event) {
             event.preventDefault();
 
@@ -968,24 +927,30 @@
             if (skipLink) skipLink.style.display = 'none';
             if (contactLinks) contactLinks.style.display = 'none';
 
+            // Measure content height to create a single-page PDF
+            const contentWidth = element.scrollWidth;
+            const contentHeight = element.scrollHeight;
+            const pdfWidthMm = 210; // A4 width
+            const pdfHeightMm = Math.ceil((contentHeight / contentWidth) * pdfWidthMm) + 10;
+
             const opt = {
                 margin: [5, 5, 5, 5],
                 filename: 'Anniken Hogstad - CV.pdf',
-                image: { type: 'jpeg', quality: 0.95 },
+                image: { type: 'jpeg', quality: 0.98 },
                 html2canvas: {
-                    scale: 1.5,
+                    scale: 2,
                     useCORS: true,
                     letterRendering: true,
                     logging: false
                 },
                 jsPDF: {
                     unit: 'mm',
-                    format: 'a4',
+                    format: [pdfWidthMm, pdfHeightMm],
                     orientation: 'portrait',
                     compress: true
                 },
                 pagebreak: {
-                    mode: ['css', 'legacy']
+                    mode: ['avoid-all']
                 }
             };
 
